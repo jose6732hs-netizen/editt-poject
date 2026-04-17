@@ -252,6 +252,39 @@
     </script>
 
     
+<style>
+/* Hover effects para imagens */
+.grid-item-container img,
+.carousel-item img,
+.image-carousel img,
+.met-custom .mc-image img,
+.image-background,
+.area-logo img,
+.localized-logo,
+img.hoverable {
+  transition: transform .5s cubic-bezier(.2,.8,.2,1), filter .5s ease, box-shadow .5s ease;
+  will-change: transform;
+}
+.grid-item-container:hover img,
+.carousel-item:hover img,
+.image-carousel a:hover img,
+.met-custom .mc-image:hover img,
+img.hoverable:hover,
+a:hover > img {
+  transform: scale(1.06);
+  filter: brightness(1.05) saturate(1.1);
+}
+.grid-item-container { overflow: hidden; }
+.grid-item-container:hover {
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+  transform: translateY(-4px);
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+.if-btn { transition: transform .3s ease, box-shadow .3s ease, filter .3s ease; }
+.if-btn:hover { transform: translateY(-2px) scale(1.03); filter: brightness(1.08); box-shadow: 0 8px 20px rgba(0,0,0,.18); }
+.tf-contact-info a { transition: color .3s ease, transform .3s ease; display: inline-block; }
+.tf-contact-info a:hover { color: #25D366; transform: translateX(3px); }
+</style>
 </head>
 
 
@@ -2026,8 +2059,8 @@ Impulsa tus habilidades en la Traducción e Interpretación con este Doctorado 1
       </div>
       <div class="tf-col tf-col-contact">
         <div class="tf-contact-info">
-          <a href="tel:+5535999196377">+55 35 99919-6377</a>
-          <a href="mailto:Info@techtitute.com.br">Info@techtitute.com.br</a>
+          <a href="https://wa.me/5535999196377?text=Hola%2C%20estaba%20viendo%20el%20sitio%20y%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n." target="_blank" rel="noopener">+55 35 99919-6377</a>
+          <a href="mailto:Info@techtitute.com.br?subject=Consulta%20desde%20el%20sitio&body=Hola%2C%20estaba%20viendo%20el%20sitio%20y%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n.">Info@techtitute.com.br</a>
         </div>
       </div>
       <div class="tf-col">
