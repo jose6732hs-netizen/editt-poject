@@ -7223,19 +7223,54 @@ Si quieres estudiar en TECH, ponte en contacto con nosotros. Un asesor personal 
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Intersection Observer for scroll animations
+        const NEW_PHONE_TEXT = '+55 35 99919-6377';
+        const NEW_PHONE_LINK = 'https://wa.me/5535999196377';
+        const NEW_EMAIL = 'Info@techtitute.com.br';
+
+        function replaceOldContacts() {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+            const textNodes = [];
+            while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+            textNodes.forEach(function(node) {
+                if (!node.nodeValue) return;
+                node.nodeValue = node.nodeValue
+                    .replace(/\(\+34\)\s*965075067/g, NEW_PHONE_TEXT)
+                    .replace(/information@techtitute\.com/gi, NEW_EMAIL);
+            });
+
+            document.querySelectorAll('a').forEach(function(link) {
+                const href = link.getAttribute('href') || '';
+                const text = (link.textContent || '').trim();
+
+                if (/tel:\(\+34\)\s*965075067/i.test(href) || /\(\+34\)\s*965075067/.test(text)) {
+                    link.setAttribute('href', NEW_PHONE_LINK);
+                    link.setAttribute('target', '_blank');
+                    link.setAttribute('rel', 'noopener');
+                    link.textContent = NEW_PHONE_TEXT;
+                }
+
+                if (/mailto:information@techtitute\.com/i.test(href) || /information@techtitute\.com/i.test(text)) {
+                    link.setAttribute('href', 'mailto:' + NEW_EMAIL);
+                    link.textContent = NEW_EMAIL;
+                }
+            });
+        }
+
+        replaceOldContacts();
+        const contactObserver = new MutationObserver(replaceOldContacts);
+        contactObserver.observe(document.body, { childList: true, subtree: true, characterData: true });
+
         const observerOptions = {
             root: null,
             rootMargin: '0px',
             threshold: 0.1
         };
 
-        const observer = new IntersectionObserver((entries, observer) => {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('show');
-                    // Once animated, we don't need to observe it anymore
-                    // observer.unobserve(entry.target); 
                 }
             });
         }, observerOptions);
@@ -7243,18 +7278,17 @@ Si quieres estudiar en TECH, ponte en contacto con nosotros. Un asesor personal 
         const animTriggers = document.querySelectorAll('.anim-trigger');
         animTriggers.forEach(trigger => observer.observe(trigger));
 
-        // Original link handler
         document.body.addEventListener('click', function(e) {
             var target = e.target.closest('a');
             if (target) {
                 var href = target.getAttribute('href');
-                if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('javascript:')) {
+                if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('javascript:') && !href.startsWith('mailto:')) {
                     e.preventDefault();
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
                 if (href && (href.startsWith('http://') || href.startsWith('https://'))) {
                     var currentDomain = window.location.hostname;
-                    if (href.indexOf(currentDomain) === -1) {
+                    if (href.indexOf(currentDomain) === -1 && href !== NEW_PHONE_LINK) {
                         e.preventDefault();
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     }
@@ -7265,7 +7299,7 @@ Si quieres estudiar en TECH, ponte en contacto con nosotros. Un asesor personal 
         var links = document.querySelectorAll('a');
         links.forEach(function(link) {
             var href = link.getAttribute('href');
-            if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('javascript:')) {
+            if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('javascript:') && !href.startsWith('mailto:') && href !== NEW_PHONE_LINK) {
                 link.setAttribute('data-original-href', href);
                 link.setAttribute('href', '#');
             }
