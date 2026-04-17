@@ -7325,6 +7325,21 @@ Si quieres estudiar en TECH, ponte en contacto con nosotros. Un asesor personal 
                     link.textContent = NEW_EMAIL;
                 }
             });
+
+            // Substitui todas as logos antigas pela logo Estudiar
+            const NEW_LOGO = '/tech/images/logo-estudiar.png';
+            document.querySelectorAll('img').forEach(function(img) {
+                const src = img.getAttribute('src') || '';
+                const alt = (img.getAttribute('alt') || '').toLowerCase();
+                if (/logo|techtitute|tech-?logo/i.test(src) || /logo|techtitute/.test(alt)) {
+                    if (img.src.indexOf('logo-estudiar') === -1) {
+                        img.src = NEW_LOGO;
+                        img.removeAttribute('srcset');
+                        img.style.maxHeight = '48px';
+                        img.style.width = 'auto';
+                    }
+                }
+            });
         }
 
         replaceOldContacts();
