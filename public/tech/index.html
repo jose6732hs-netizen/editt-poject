@@ -7713,6 +7713,19 @@ footer a:hover { color: #f1bd19 !important; }
   .award-box .award-badge.footer-badge .award-image { max-height: 50px !important; max-width: 100px !important; }
 }
 
+/* === Esconde todos os botões "Leer más" === */
+.button-section:has(.read-more#button-touch-0),
+.button-section:has(.read-more#button-touch-1),
+.button-section:has(.read-more#button-touch-2),
+.button-section:has(.read-more#button-touch-3),
+.button-section:has(.read-more#button-touch-4),
+.button-section:has(.read-more#button-touch-5),
+.button-section:has(.read-more#button-touch-6),
+.button-section:has(.read-more#button-touch-7),
+.button-section:has(.read-more#button-touch-8),
+.button-section:has(.read-more#button-touch-9) {
+  display: none !important;
+}
 /* Cursor pointer no controle de áudio */
 .audio-control, .audio-toggle { cursor: pointer !important; pointer-events: auto !important; }
 .audio-toggle.muted .volume-up { opacity: .55; }
