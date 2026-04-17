@@ -7451,18 +7451,23 @@ Impulsa tus habilidades en la Traducción e Interpretación con este Doctorado 1
   }
 
   // Seletores que cobrem o menu superior em desktop e mobile
+  // (NÃO inclui o hambúrguer nem o menu lateral mobile, para que o usuário consiga abrir/navegar no mobile)
   var selectors = [
     'app-header a','app-header button',
     'app-top-menu a','app-top-menu button',
-    'app-side-menu a','app-side-menu button',
-    'header a','header button',
-    '.navbar a','.navbar button',
+    'header > .app-menu-header .navbar a','header > .app-menu-header .navbar button',
     '.fixed-header-navbar-nav a','.fixed-header-navbar-nav button',
     '.faculties-menu-desktop-wrapper a','.faculties-menu-desktop-wrapper button',
-    '#faculties-menu-mobile-wrapper a','#faculties-menu-mobile-wrapper button',
+    '.dropdown-toggle.nav-link-select'
+  ].join(',');
+
+  // Seletores que devem permanecer ATIVOS (têm prioridade sobre os bloqueados)
+  var allowSelectors = [
     '.hamburguer','.hamburguer *',
-    '[data-toggle]','[data-bs-toggle]',
-    '.dropdown-toggle','.nav-link'
+    '.menu','.menu *','.sidebar','.sidebar *',
+    'app-side-menu','app-side-menu *',
+    '#faculties-menu-mobile-wrapper','#faculties-menu-mobile-wrapper *',
+    '.header-flag-container','.header-flag-container *'
   ].join(',');
 
   function disable(el){
@@ -7481,10 +7486,17 @@ Impulsa tus habilidades en la Traducción e Interpretación con este Doctorado 1
     el.style.cursor = 'default';
   }
 
+  function isAllowed(el){
+    return el && el.closest && el.closest(allowSelectors);
+  }
+
   function applyAll(){
-    document.querySelectorAll(selectors).forEach(disable);
-    // Esconde menus que possam abrir
-    document.querySelectorAll('.dropdown-menu.show, .menu-open, .faculties-menu-desktop-wrapper.show').forEach(function(el){
+    document.querySelectorAll(selectors).forEach(function(el){
+      if(isAllowed(el)) return;
+      disable(el);
+    });
+    // Esconde menus desktop que possam abrir (não toca em sidebar/menu mobile)
+    document.querySelectorAll('.faculties-menu-desktop-wrapper.show').forEach(function(el){
       el.classList.remove('show','menu-open');
       el.style.display = 'none';
     });
@@ -7496,6 +7508,7 @@ Impulsa tus habilidades en la Traducción e Interpretación con este Doctorado 1
     // Bloqueia em fase de captura — antes de qualquer outro listener
     ['click','mousedown','mouseup','touchstart','touchend'].forEach(function(evt){
       document.addEventListener(evt, function(e){
+        if(isAllowed(e.target)) return; // permite hambúrguer e menu mobile
         var t = e.target && e.target.closest ? e.target.closest(selectors) : null;
         if(t) return killEvent(e);
       }, true);
