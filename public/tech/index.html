@@ -7713,11 +7713,34 @@ footer a:hover { color: #f1bd19 !important; }
   .award-box .award-badge.footer-badge .award-image { max-height: 50px !important; max-width: 100px !important; }
 }
 
+
+/* === Esconde todos os botões "Leer más" via JS abaixo === */
+.hide-leer-mas { display: none !important; }
 /* Cursor pointer no controle de áudio */
 .audio-control, .audio-toggle { cursor: pointer !important; pointer-events: auto !important; }
 .audio-toggle.muted .volume-up { opacity: .55; }
 .audio-toggle .volume-up { transition: opacity .2s ease; }
 </style>
+
+<script>
+/* === Remove todos os botões "Leer más" === */
+(function(){
+  function hideLeerMas(){
+    document.querySelectorAll('.read-more, .button-section').forEach(function(el){
+      var txt = (el.textContent || '').trim().toLowerCase();
+      if (txt === 'leer más' || txt === 'leer mas') {
+        var btn = el.closest('.button-section') || el;
+        btn.style.display = 'none';
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', hideLeerMas);
+  } else { hideLeerMas(); }
+  setTimeout(hideLeerMas, 500);
+  setTimeout(hideLeerMas, 1500);
+})();
+</script>
 
 <script>
 /* === Toggle de som no vídeo ao clicar no alto-falante === */
