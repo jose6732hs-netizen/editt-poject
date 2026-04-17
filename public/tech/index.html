@@ -931,14 +931,22 @@ Impulsa tus habilidades en la Traducción e Interpretación con este Doctorado 1
     /* === Zoom (Ken Burns) no slide ativo do carrossel === */
     #course-carousel-home .carousel-item { overflow: hidden; }
     #course-carousel-home .carousel-item .bg-img,
-    #course-carousel-home .carousel-item img {
-      transform: scale(1);
-      transition: transform 5s ease-out;
+    #course-carousel-home .carousel-item > img,
+    #course-carousel-home .carousel-item picture,
+    #course-carousel-home .carousel-item picture img {
+      transform-origin: center center;
       will-change: transform;
+      backface-visibility: hidden;
+    }
+    @keyframes courseCarouselZoom {
+      0%   { transform: scale(1); }
+      100% { transform: scale(1.25); }
     }
     #course-carousel-home .carousel-item.active .bg-img,
-    #course-carousel-home .carousel-item.active img {
-      transform: scale(1.12);
+    #course-carousel-home .carousel-item.active > img,
+    #course-carousel-home .carousel-item.active picture,
+    #course-carousel-home .carousel-item.active picture img {
+      animation: courseCarouselZoom 3s ease-out forwards;
     }
 
     /* === Oferta Académica - grid premium === */
