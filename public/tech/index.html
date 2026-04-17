@@ -252,6 +252,39 @@
     </script>
 
     
+<style>
+/* Hover effects para imagens */
+.grid-item-container img,
+.carousel-item img,
+.image-carousel img,
+.met-custom .mc-image img,
+.image-background,
+.area-logo img,
+.localized-logo,
+img.hoverable {
+  transition: transform .5s cubic-bezier(.2,.8,.2,1), filter .5s ease, box-shadow .5s ease;
+  will-change: transform;
+}
+.grid-item-container:hover img,
+.carousel-item:hover img,
+.image-carousel a:hover img,
+.met-custom .mc-image:hover img,
+img.hoverable:hover,
+a:hover > img {
+  transform: scale(1.06);
+  filter: brightness(1.05) saturate(1.1);
+}
+.grid-item-container { overflow: hidden; }
+.grid-item-container:hover {
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+  transform: translateY(-4px);
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+.if-btn { transition: transform .3s ease, box-shadow .3s ease, filter .3s ease; }
+.if-btn:hover { transform: translateY(-2px) scale(1.03); filter: brightness(1.08); box-shadow: 0 8px 20px rgba(0,0,0,.18); }
+.tf-contact-info a { transition: color .3s ease, transform .3s ease; display: inline-block; }
+.tf-contact-info a:hover { color: #25D366; transform: translateX(3px); }
+</style>
 </head>
 
 
