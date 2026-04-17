@@ -476,12 +476,17 @@
 <input id="CountryRecaptchaEnabled" type="hidden" value="EC">
 <style>.grecaptcha-badge,iframe[src*="recaptcha"][title*="reCAPTCHA"]{visibility:hidden!important;opacity:0!important;pointer-events:none!important;}
 @media (max-width:991px){
-  .home-section .row.home-section-wrapper{display:flex;flex-direction:column;}
-  .home-section .title-home-section{order:1 !important;}
+  .home-section{position:relative;}
+  .home-section .image-section{position:absolute !important;top:0;left:0;right:0;bottom:0;z-index:0;}
+  .home-section .image-back-mobile-section{height:100% !important;min-height:100% !important;}
+  .home-section .title-home-section,
   .home-section .paragraphs-home-section,
-  .home-section [style*="order: 2"]{order:2 !important;}
-  .home-section .image-section{order:3 !important;}
-  .home-section .bottom-home-section{order:4 !important;}
+  .home-section [style*="order: 2"],
+  .home-section .bottom-home-section{position:relative;z-index:2;}
+  .home-section .title-page-content{color:#fff !important;text-shadow:0 2px 8px rgba(0,0,0,0.6);}
+  .home-section .paragraph-section-content,
+  .home-section .paragraph-section-content .paragraph,
+  .home-section .paragraph-section-content .paragraph *{color:#fff !important;text-shadow:0 1px 4px rgba(0,0,0,0.7);}
 }</style>
 
 <div class="page-content" scrollspy="">
