@@ -7451,18 +7451,23 @@ Impulsa tus habilidades en la Traducción e Interpretación con este Doctorado 1
   }
 
   // Seletores que cobrem o menu superior em desktop e mobile
+  // (NÃO inclui o hambúrguer nem o menu lateral mobile, para que o usuário consiga abrir/navegar no mobile)
   var selectors = [
     'app-header a','app-header button',
     'app-top-menu a','app-top-menu button',
-    'app-side-menu a','app-side-menu button',
-    'header a','header button',
-    '.navbar a','.navbar button',
+    'header > .app-menu-header .navbar a','header > .app-menu-header .navbar button',
     '.fixed-header-navbar-nav a','.fixed-header-navbar-nav button',
     '.faculties-menu-desktop-wrapper a','.faculties-menu-desktop-wrapper button',
-    '#faculties-menu-mobile-wrapper a','#faculties-menu-mobile-wrapper button',
+    '.dropdown-toggle.nav-link-select'
+  ].join(',');
+
+  // Seletores que devem permanecer ATIVOS (têm prioridade sobre os bloqueados)
+  var allowSelectors = [
     '.hamburguer','.hamburguer *',
-    '[data-toggle]','[data-bs-toggle]',
-    '.dropdown-toggle','.nav-link'
+    '.menu','.menu *','.sidebar','.sidebar *',
+    'app-side-menu','app-side-menu *',
+    '#faculties-menu-mobile-wrapper','#faculties-menu-mobile-wrapper *',
+    '.header-flag-container','.header-flag-container *'
   ].join(',');
 
   function disable(el){
