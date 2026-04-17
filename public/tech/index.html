@@ -568,6 +568,29 @@
             }
         }
     </script>
+<script>
+/* Garante autoplay em todos os vídeos do carrossel (inclusive o primeiro) */
+(function(){
+  function playAll(){
+    document.querySelectorAll('#video-carousel video').forEach(function(v){
+      try {
+        v.muted = true;
+        v.setAttribute('autoplay','');
+        v.setAttribute('playsinline','');
+        if (v.readyState === 0) v.load();
+        var p = v.play();
+        if (p && p.catch) p.catch(function(){});
+      } catch(e){}
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', playAll);
+  } else { playAll(); }
+  setTimeout(playAll, 600);
+  setTimeout(playAll, 1800);
+  document.addEventListener('click', playAll, { passive: true });
+})();
+</script>
 </app-video-carousel>            <div class="first-quote contain">
                 <div class="slide">
                     <div class="quote">
