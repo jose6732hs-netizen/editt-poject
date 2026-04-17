@@ -1587,7 +1587,7 @@ Especialízate en Seguridad Pública con este Doctorado 100% en línea, diseñad
   var cur = document.getElementById('cd-cur');
   if(!track||!prev||!next) return;
   var idx = 0;
-  function perView(){ return window.innerWidth >= 768 ? 3 : 1; }
+  function perView(){ if(window.innerWidth >= 992) return 5; if(window.innerWidth >= 768) return 4; return 1; }
   function total(){ return track.children.length; }
   function update(){
     var pv = perView();
