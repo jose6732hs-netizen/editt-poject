@@ -4521,23 +4521,24 @@ Si quieres estudiar en Estudiar, ponte en contacto con nosotros. Un asesor perso
         }
 
         .section-8 {
+            position: relative;
             background-color: #1a1a1a;
-        }
-        .section-8 > .image-background {
-            display: block !important;
-            background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://www.techtitute.com/techtitute/images/home-sections/mobile/googlePartnerHome.jpg');
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://www.techtitute.com/techtitute/images/home-sections/mobile/googlePartnerHome.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            min-height: 600px;
+            padding: 60px 0;
         }
-        @media (max-width: 800px) {
-            .section-8 > .image-background {
-                display: block !important;
-                padding: 28.125% !important;
-            }
+        .section-8 > .image-background {
+            display: none !important;
+        }
+        .section-8 .home-section-wrapper {
+            position: relative;
+            z-index: 2;
         }
         .section-8 .title-page-content {
-            color: #FFFFFF ;
+            color: #FFFFFF !important;
             width: auto;
             text-shadow: inherit;
         }
