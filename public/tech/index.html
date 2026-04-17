@@ -258,6 +258,44 @@
         body.menu-scrolled .app-menu-header .nav-link,
         body.menu-scrolled .app-menu-header .navbar-nav .nav-link { color: #124a83 !important; }
         body.menu-scrolled .app-menu-header .hamburguer span { background-color: #124a83 !important; }
+
+        /* ====== LOGO ESTUDIAR — substitui todas as logos ====== */
+        .localized-logo,
+        .area-logo-default,
+        .logo-tech,
+        .logo-techtitute,
+        a.logo,
+        .navbar-brand,
+        .footer-logo,
+        .app-menu-header .logo,
+        .app-menu-header img.logo,
+        img.localized-logo,
+        img.area-logo-default {
+            background-image: url('/tech/images/logo-estudiar.png') !important;
+            background-repeat: no-repeat !important;
+            background-position: center center !important;
+            background-size: contain !important;
+            background-color: transparent !important;
+            min-width: 160px;
+            min-height: 48px;
+        }
+        /* Quando a logo é um <img>, troca o src via CSS não funciona — escondemos o img original e colocamos a nova como background no pai */
+        .app-menu-header .logo img,
+        .navbar-brand img,
+        .footer-logo img,
+        a.logo img { content: url('/tech/images/logo-estudiar.png') !important; max-height: 48px; width: auto; }
+
+        /* No header transparente (topo) deixa a logo branca; ao rolar volta ao normal */
+        .app-menu-header .localized-logo,
+        .app-menu-header .area-logo-default,
+        .app-menu-header .navbar-brand img,
+        .app-menu-header a.logo img,
+        .app-menu-header .logo img { filter: brightness(0) invert(1); transition: filter 0.35s ease; }
+        body.menu-scrolled .app-menu-header .localized-logo,
+        body.menu-scrolled .app-menu-header .area-logo-default,
+        body.menu-scrolled .app-menu-header .navbar-brand img,
+        body.menu-scrolled .app-menu-header a.logo img,
+        body.menu-scrolled .app-menu-header .logo img { filter: none; }
     </style>
 
     
