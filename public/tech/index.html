@@ -7805,33 +7805,37 @@ footer a:hover { color: #f1bd19 !important; }
   color: #fff !important;
   text-shadow: 0 2px 8px rgba(0,0,0,.55), 0 0 2px rgba(0,0,0,.45);
 }
-/* Força imagens de fundo a aparecerem mesmo com lazyBackground */
-.home-section .image-background {
+/* === Força carregamento das imagens de fundo originais do techtitute === */
+.home-section { position: relative; min-height: 360px; }
+.home-section .image-background,
+.home-section .image-background-mobile {
   display: block !important;
   width: 100% !important;
   height: 100% !important;
-  min-height: 320px;
+  min-height: 360px;
   padding: 0 !important;
-  background-image: var(--lazy-bg) !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 }
+.home-section > .image-background {
+  position: absolute !important;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+}
+/* URLs por seção (origem techtitute.com) */
+.section-0 .image-background, .section-0 .image-background-mobile { background-image: url("https://www.techtitute.com/techtitute/cms/images/home/section-0.jpg") !important; }
+.section-1 .image-background, .section-1 .image-background-mobile { background-image: url("https://www.techtitute.com/techtitute/cms/images/home/section-1.jpg") !important; }
+.section-2 .image-background, .section-2 .image-background-mobile { background-image: url("https://www.techtitute.com/techtitute/cms/images/home/section-2.jpg") !important; }
+.section-3 .image-background, .section-3 .image-background-mobile { background-image: url("https://www.techtitute.com/techtitute/cms/images/home/section-3.jpg") !important; }
+.section-4 .image-background, .section-4 .image-background-mobile { background-image: url("https://www.techtitute.com/techtitute/cms/images/home/section-4.jpg") !important; }
+.section-5 .image-background, .section-5 .image-background-mobile { background-image: url("https://www.techtitute.com/techtitute/cms/images/home/section-5.jpg") !important; }
+.section-6 .image-background, .section-6 .image-background-mobile { background-image: url("https://www.techtitute.com/techtitute/cms/images/home/section-6.jpg") !important; }
+.section-7 .image-background, .section-7 .image-background-mobile { background-image: url("https://www.techtitute.com/techtitute/cms/images/home/section-7.jpg") !important; }
+.section-8 .image-background, .section-8 .image-background-mobile { background-image: url("https://www.techtitute.com/techtitute/cms/images/home/section-8.jpg") !important; }
+.section-9 .image-background, .section-9 .image-background-mobile { background-image: url("https://www.techtitute.com/techtitute/cms/images/home/section-9.jpg") !important; }
+.section-10 .image-background, .section-10 .image-background-mobile { background-image: url("https://www.techtitute.com/techtitute/cms/images/home/section-10.jpg") !important; }
 </style>
-<script>
-/* Resolve lazyBackground: copia data-bg/data-src para background-image */
-(function(){
-  function loadLazy(){
-    document.querySelectorAll('.home-section .image-background, .home-section .lazyBackground').forEach(function(el){
-      var url = el.getAttribute('data-bg') || el.getAttribute('data-src') || el.getAttribute('data-background') || el.getAttribute('data-image');
-      if(url){
-        el.style.backgroundImage = 'url("'+url+'")';
-        el.classList.remove('lazyBackground');
-      }
-    });
-  }
-  if(document.readyState !== 'loading') loadLazy();
-  else document.addEventListener('DOMContentLoaded', loadLazy);
-  setTimeout(loadLazy, 1500);
-})();
-</script>
 
 <script>
 /* === Remove todos os botões "Leer más" === */
