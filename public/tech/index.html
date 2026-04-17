@@ -226,6 +226,38 @@
         .anim-trigger.slideInRight { transform: translateX(150px); }
         .anim-trigger.fadeInUp { transform: translateY(100px); }
         .anim-trigger.show { opacity: 1; transform: translate(0, 0); }
+
+        /* Header transparente no topo, branco ao rolar */
+        .app-menu-header,
+        .app-menu-header .navbar-header,
+        .app-menu-header .fixed-top-menu {
+            background-color: transparent !important;
+            box-shadow: none !important;
+            transition: background-color 0.35s ease, box-shadow 0.35s ease;
+        }
+        .app-menu-header .localized-logo,
+        .app-menu-header .area-logo-default {
+            transition: filter 0.35s ease;
+            filter: brightness(0) invert(1);
+        }
+        .app-menu-header .nav-link,
+        .app-menu-header .navbar-nav .nav-link {
+            color: #ffffff !important;
+            transition: color 0.35s ease;
+        }
+        .app-menu-header .hamburguer span { background-color: #ffffff !important; transition: background-color 0.35s ease; }
+
+        body.menu-scrolled .app-menu-header,
+        body.menu-scrolled .app-menu-header .navbar-header,
+        body.menu-scrolled .app-menu-header .fixed-top-menu {
+            background-color: #ffffff !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important;
+        }
+        body.menu-scrolled .app-menu-header .localized-logo,
+        body.menu-scrolled .app-menu-header .area-logo-default { filter: none; }
+        body.menu-scrolled .app-menu-header .nav-link,
+        body.menu-scrolled .app-menu-header .navbar-nav .nav-link { color: #124a83 !important; }
+        body.menu-scrolled .app-menu-header .hamburguer span { background-color: #124a83 !important; }
     </style>
 
     
@@ -7277,6 +7309,17 @@ Si quieres estudiar en TECH, ponte en contacto con nosotros. Un asesor personal 
 
         const animTriggers = document.querySelectorAll('.anim-trigger');
         animTriggers.forEach(trigger => observer.observe(trigger));
+
+        // Header transparente -> branco ao rolar
+        function updateHeaderState() {
+            if (window.scrollY > 50) {
+                document.body.classList.add('menu-scrolled');
+            } else {
+                document.body.classList.remove('menu-scrolled');
+            }
+        }
+        updateHeaderState();
+        window.addEventListener('scroll', updateHeaderState, { passive: true });
 
         document.body.addEventListener('click', function(e) {
             var target = e.target.closest('a');
