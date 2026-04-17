@@ -7509,10 +7509,12 @@ Si quieres estudiar en Estudiar, ponte en contacto con nosotros. Un asesor perso
 
   function shouldBlock(a){
     if(!a) return false;
-    // permite âncoras puras (#) — usadas para abrir menus
     var href = a.getAttribute('href');
     if(isInternalNoNav(href)) return false;
-    // bloqueia tudo que tente navegar
+    // permite contatos (WhatsApp, telefone, e-mail)
+    if(/^(mailto:|tel:|sms:|whatsapp:)/i.test(href)) return false;
+    if(/wa\.me\//i.test(href) || /api\.whatsapp\.com/i.test(href)) return false;
+    // bloqueia o resto
     return true;
   }
 
