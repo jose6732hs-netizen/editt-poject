@@ -1512,32 +1512,18 @@ Impulsa tus habilidades en la Traducción e Interpretación con este Doctorado 1
 .cd-custom .cd-title b{font-weight:700;}
 .cd-custom .cd-counter{color:#666;font-size:16px;}
 .cd-custom .cd-counter .cur{color:#FF6400;font-weight:700;font-size:20px;}
-.cd-custom .cd-cards{display:grid;grid-template-columns:1fr;gap:24px;}
-.cd-custom .cd-card{background:#fff;border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,.08);overflow:hidden;display:flex;flex-direction:column;position:relative;padding-bottom:18px;}
-.cd-custom .cd-card-img{height:140px;background-size:cover;background-position:center;}
-.cd-custom .cd-avatar{width:110px;height:110px;border-radius:50%;border:4px solid #fff;background:#eee center/cover no-repeat;margin:-55px auto 0;filter:grayscale(100%);}
-.cd-custom .cd-name{text-align:center;font-weight:700;color:#333;margin:14px 0 6px;font-size:16px;}
-.cd-custom .cd-tags{text-align:center;font-size:13px;margin-bottom:10px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
-.cd-custom .cd-tag-med{color:#00b1ff;}
-.cd-custom .cd-tag-vet{color:#a855f7;}
-.cd-custom .cd-tag-odo{color:#FF6400;}
-.cd-custom .cd-tag-enf{color:#20b847;}
-.cd-custom .cd-bio{text-align:center;font-size:13px;line-height:1.45;color:#444;padding:0 18px;margin-bottom:14px;}
-.cd-custom .cd-social{display:flex;justify-content:center;gap:10px;padding:0 18px;}
-.cd-custom .cd-social a{width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:13px;text-decoration:none;}
-.cd-custom .cd-social .fb{background:#1877f2;}
-.cd-custom .cd-social .tw{background:#1da1f2;}
-.cd-custom .cd-social .li{background:#0a66c2;}
+.cd-custom .cd-cards{display:grid;grid-template-columns:1fr;gap:24px;justify-items:center;}
+.cd-custom .cd-card{display:block;max-width:260px;width:100%;}
+.cd-custom .cd-card img{width:100%;height:auto;display:block;border-radius:14px;}
 @media (min-width:768px){
   .cd-custom{padding:60px 40px;}
   .cd-custom .cd-title{font-size:32px;}
-  .cd-custom .cd-cards{grid-template-columns:repeat(2,1fr);gap:24px;}
+  .cd-custom .cd-cards{grid-template-columns:repeat(3,1fr);gap:24px;}
 }
 @media (min-width:992px){
   .cd-custom{padding:70px 60px;}
   .cd-custom .cd-title{font-size:38px;}
-  .cd-custom .cd-card-img{height:160px;}
-  .cd-custom .cd-cards{grid-template-columns:repeat(4,1fr);}
+  .cd-custom .cd-cards{grid-template-columns:repeat(5,1fr);gap:20px;}
 }
 </style>
 <section class="cd-custom">
@@ -1547,38 +1533,16 @@ Impulsa tus habilidades en la Traducción e Interpretación con este Doctorado 1
       <div class="cd-counter"><span class="cur">1</span> /6237</div>
     </div>
     <div class="cd-cards">
-      <article class="cd-card">
-        <div class="cd-card-img" style="background-image:url('images/teacher-1.avif');"></div>
-        <div class="cd-avatar" style="background-image:url('images/teacher-1.avif');"></div>
-        <div class="cd-name">Perry, Karen</div>
-        <div class="cd-tags"><span class="cd-tag-vet">veterinaria</span></div>
-        <div class="cd-bio">Jefa de Cirugía de Pequeños Animales en el Centro Veterinario de la Universidad de Michigan, EE. UU.</div>
-        <div class="cd-social"><a class="fb" href="#" aria-label="Facebook">f</a><a class="tw" href="#" aria-label="Twitter">t</a><a class="li" href="#" aria-label="LinkedIn">in</a></div>
-      </article>
-      <article class="cd-card">
-        <div class="cd-card-img" style="background-image:url('images/teacher-2.avif');"></div>
-        <div class="cd-avatar" style="background-image:url('images/teacher-2.avif');"></div>
-        <div class="cd-name">Bedi, Raman</div>
-        <div class="cd-tags"><span class="cd-tag-odo">odontología</span></div>
-        <div class="cd-bio">Presidente de Global Child Dental Fund y Catedrático en el King's College, Londres, Reino Unido</div>
-        <div class="cd-social"><a class="fb" href="#" aria-label="Facebook">f</a><a class="tw" href="#" aria-label="Twitter">t</a><a class="li" href="#" aria-label="LinkedIn">in</a></div>
-      </article>
-      <article class="cd-card">
-        <div class="cd-card-img" style="background-image:url('images/teacher-3.avif');"></div>
-        <div class="cd-avatar" style="background-image:url('images/teacher-3.avif');"></div>
-        <div class="cd-name">Parikh, Chiti</div>
-        <div class="cd-tags"><span class="cd-tag-med">medicina</span><span class="cd-tag-enf">enfermería</span></div>
-        <div class="cd-bio">Directora Ejecutiva de Salud Integral y Bienestar en el Hospital Presbyterian, Nueva York, EE. UU.</div>
-        <div class="cd-social"><a class="fb" href="#" aria-label="Facebook">f</a><a class="tw" href="#" aria-label="Twitter">t</a><a class="li" href="#" aria-label="LinkedIn">in</a></div>
-      </article>
-      <article class="cd-card">
-        <div class="cd-card-img" style="background-image:url('images/teacher-4.avif');"></div>
-        <div class="cd-avatar" style="background-image:url('images/teacher-4.avif');"></div>
-        <div class="cd-name">Hofmann, Stefan G.</div>
-        <div class="cd-tags"><span style="color:#ed0d89;">psicología</span></div>
-        <div class="cd-bio">Catedrático del Departamento de Neurología y Psicología de la Universidad de Boston, Estados Unidos</div>
-        <div class="cd-social"><a class="fb" href="#" aria-label="Facebook">f</a><a class="tw" href="#" aria-label="Twitter">t</a><a class="li" href="#" aria-label="LinkedIn">in</a></div>
-      </article>
+      <div class="cd-card"><img src="images/prof-perry.png" alt="Perry, Karen - veterinaria" loading="lazy"></div>
+      <div class="cd-card"><img src="images/prof-bedi.png" alt="Bedi, Raman - odontología" loading="lazy"></div>
+      <div class="cd-card"><img src="images/prof-parikh.png" alt="Parikh, Chiti - medicina, enfermería" loading="lazy"></div>
+      <div class="cd-card"><img src="images/prof-hofmann.png" alt="Hofmann, Stefan G. - psicología" loading="lazy"></div>
+      <div class="cd-card"><img src="images/prof-blinderman.png" alt="Blinderman, Craig David - medicina, enfermería" loading="lazy"></div>
+      <div class="cd-card"><img src="images/prof-tenenbaum.png" alt="Tenenbaum, Howard C. - odontología" loading="lazy"></div>
+      <div class="cd-card"><img src="images/prof-ezenkwele.png" alt="Ezenkwele, Ugo - medicina" loading="lazy"></div>
+      <div class="cd-card"><img src="images/prof-shehebar.png" alt="Shehebar, Josef A. - medicina" loading="lazy"></div>
+      <div class="cd-card"><img src="images/prof-tsao.png" alt="Tsao, Kai - medicina" loading="lazy"></div>
+      <div class="cd-card"><img src="images/prof-deluigi.png" alt="De Luigi, Arthur - medicina" loading="lazy"></div>
     </div>
   </div>
 </section>
