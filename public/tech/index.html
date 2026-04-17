@@ -7563,4 +7563,76 @@ Si quieres estudiar en Estudiar, ponte en contacto con nosotros. Un asesor perso
   // (omitido para não quebrar refresh manual)
 })();
 </script>
+<script>
+/* === Bloqueio total dos menus do header (Facultades, Estudios, Buscar, idioma) === */
+(function(){
+  function killEvent(e){
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+    return false;
+  }
+
+  // Seletores que cobrem o menu superior em desktop e mobile
+  var selectors = [
+    'app-header a','app-header button',
+    'app-top-menu a','app-top-menu button',
+    'app-side-menu a','app-side-menu button',
+    'header a','header button',
+    '.navbar a','.navbar button',
+    '.fixed-header-navbar-nav a','.fixed-header-navbar-nav button',
+    '.faculties-menu-desktop-wrapper a','.faculties-menu-desktop-wrapper button',
+    '#faculties-menu-mobile-wrapper a','#faculties-menu-mobile-wrapper button',
+    '.hamburguer','.hamburguer *',
+    '[data-toggle]','[data-bs-toggle]',
+    '.dropdown-toggle','.nav-link'
+  ].join(',');
+
+  function disable(el){
+    if(!el || el.__navDisabled) return;
+    el.__navDisabled = true;
+    // remove handlers nativos do framework
+    try { el.onclick = null; el.onmousedown = null; el.onmouseover = null; } catch(_){}
+    el.removeAttribute('data-toggle');
+    el.removeAttribute('data-bs-toggle');
+    el.removeAttribute('data-target');
+    el.removeAttribute('data-bs-target');
+    if(el.tagName === 'A'){
+      el.setAttribute('href','javascript:void(0)');
+    }
+    el.style.pointerEvents = 'none';
+    el.style.cursor = 'default';
+  }
+
+  function applyAll(){
+    document.querySelectorAll(selectors).forEach(disable);
+    // Esconde menus que possam abrir
+    document.querySelectorAll('.dropdown-menu.show, .menu-open, .faculties-menu-desktop-wrapper.show').forEach(function(el){
+      el.classList.remove('show','menu-open');
+      el.style.display = 'none';
+    });
+  }
+
+  // Captura inicial e periódica (porque scripts do framework podem re-anexar handlers)
+  function init(){
+    applyAll();
+    // Bloqueia em fase de captura — antes de qualquer outro listener
+    ['click','mousedown','mouseup','touchstart','touchend'].forEach(function(evt){
+      document.addEventListener(evt, function(e){
+        var t = e.target && e.target.closest ? e.target.closest(selectors) : null;
+        if(t) return killEvent(e);
+      }, true);
+    });
+    // Re-aplica caso o framework injete novos elementos
+    var mo = new MutationObserver(applyAll);
+    mo.observe(document.body, { childList:true, subtree:true });
+    // E também a cada segundo como backup
+    setInterval(applyAll, 1000);
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+})();
+</script>
 </body></html>
