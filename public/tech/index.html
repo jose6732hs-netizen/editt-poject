@@ -46,13 +46,13 @@
     <link rel="manifest" href="#site.webmanifest">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <link rel="icon" type="image/png" href="images/logo-tech.png">
+    <link rel="icon" type="image/png" href="images/logo-estudiar.png">
 
     <title>TECH Brasil - La mayor Universidad digital del mundo</title>
     <script type="3efeabd8ebfa91fdebaabe65-text/javascript">!function (e) { "use strict"; function s(s) { if (s) { var t = e.documentElement; t.classList ? t.classList.add("webp") : t.className += " webp", window.sessionStorage.setItem("webpSupport", !0) } } !function (e) { if (window.sessionStorage && window.sessionStorage.getItem("webpSupport")) s(!0); else { var t = new Image; t.onload = t.onerror = function () { e(2 === t.height) }, t.src = "data:image/webp;base64,UklGRi4AAABXRUJQVlA4TCEAAAAvAUAAEB8wAiMwAgSSNtse/cXjxyCCmrYNWPwmHRH9jwMA" } }(s) }(document);</script>
 
     
-    <meta property="og:image" content="images/logo-tech.png">    
+    <meta property="og:image" content="images/logo-estudiar.png">    
 
     <meta name="description" content="TECH Brasil es la mayor universidad digital del mundo. Con reconocimiento oficial en Europa y América.">
     <meta name="keywords" content="TECH Universidad Brasil, techtitute Brasil, tech universidad Brasil, universidad tech Brasil, tech Brasil universidad tecnologica, tech Brasil, tech education Brasil, tech online Brasil, Brasil tech universidad,">
@@ -258,6 +258,44 @@
         body.menu-scrolled .app-menu-header .nav-link,
         body.menu-scrolled .app-menu-header .navbar-nav .nav-link { color: #124a83 !important; }
         body.menu-scrolled .app-menu-header .hamburguer span { background-color: #124a83 !important; }
+
+        /* ====== LOGO ESTUDIAR — substitui todas as logos ====== */
+        .localized-logo,
+        .area-logo-default,
+        .logo-tech,
+        .logo-techtitute,
+        a.logo,
+        .navbar-brand,
+        .footer-logo,
+        .app-menu-header .logo,
+        .app-menu-header img.logo,
+        img.localized-logo,
+        img.area-logo-default {
+            background-image: url('/tech/images/logo-estudiar.png') !important;
+            background-repeat: no-repeat !important;
+            background-position: center center !important;
+            background-size: contain !important;
+            background-color: transparent !important;
+            min-width: 160px;
+            min-height: 48px;
+        }
+        /* Quando a logo é um <img>, troca o src via CSS não funciona — escondemos o img original e colocamos a nova como background no pai */
+        .app-menu-header .logo img,
+        .navbar-brand img,
+        .footer-logo img,
+        a.logo img { content: url('/tech/images/logo-estudiar.png') !important; max-height: 48px; width: auto; }
+
+        /* No header transparente (topo) deixa a logo branca; ao rolar volta ao normal */
+        .app-menu-header .localized-logo,
+        .app-menu-header .area-logo-default,
+        .app-menu-header .navbar-brand img,
+        .app-menu-header a.logo img,
+        .app-menu-header .logo img { filter: brightness(0) invert(1); transition: filter 0.35s ease; }
+        body.menu-scrolled .app-menu-header .localized-logo,
+        body.menu-scrolled .app-menu-header .area-logo-default,
+        body.menu-scrolled .app-menu-header .navbar-brand img,
+        body.menu-scrolled .app-menu-header a.logo img,
+        body.menu-scrolled .app-menu-header .logo img { filter: none; }
     </style>
 
     
@@ -7285,6 +7323,21 @@ Si quieres estudiar en TECH, ponte en contacto con nosotros. Un asesor personal 
                 if (/mailto:information@techtitute\.com/i.test(href) || /information@techtitute\.com/i.test(text)) {
                     link.setAttribute('href', 'mailto:' + NEW_EMAIL);
                     link.textContent = NEW_EMAIL;
+                }
+            });
+
+            // Substitui todas as logos antigas pela logo Estudiar
+            const NEW_LOGO = '/tech/images/logo-estudiar.png';
+            document.querySelectorAll('img').forEach(function(img) {
+                const src = img.getAttribute('src') || '';
+                const alt = (img.getAttribute('alt') || '').toLowerCase();
+                if (/logo|techtitute|tech-?logo/i.test(src) || /logo|techtitute/.test(alt)) {
+                    if (img.src.indexOf('logo-estudiar') === -1) {
+                        img.src = NEW_LOGO;
+                        img.removeAttribute('srcset');
+                        img.style.maxHeight = '48px';
+                        img.style.width = 'auto';
+                    }
                 }
             });
         }
