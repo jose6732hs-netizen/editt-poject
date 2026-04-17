@@ -7769,6 +7769,42 @@ footer a:hover { color: #f1bd19 !important; }
 .audio-control, .audio-toggle { cursor: pointer !important; pointer-events: auto !important; }
 .audio-toggle.muted .volume-up { opacity: .55; }
 .audio-toggle .volume-up { transition: opacity .2s ease; }
+
+/* === TEXT OVERLAY ON IMAGES — DESKTOP + MOBILE === */
+.home-section { position: relative; }
+.home-section .row.home-section-wrapper {
+  position: relative;
+}
+.home-section .image-section {
+  position: absolute !important;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: 0 0 100% !important;
+  z-index: 0;
+  padding: 0 !important;
+}
+.home-section .image-section .image-background,
+.home-section .image-section img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+.home-section .title-home-section,
+.home-section .paragraphs-home-section,
+.home-section .bottom-home-section {
+  position: relative;
+  z-index: 2;
+}
+.home-section .title-home-section,
+.home-section .title-home-section *,
+.home-section .paragraphs-home-section,
+.home-section .paragraphs-home-section * {
+  color: #fff !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,.55), 0 0 2px rgba(0,0,0,.45);
+}
 </style>
 
 <script>
