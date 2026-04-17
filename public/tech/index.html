@@ -7723,6 +7723,26 @@ footer a:hover { color: #f1bd19 !important; }
 </style>
 
 <script>
+/* === Remove todos os botões "Leer más" === */
+(function(){
+  function hideLeerMas(){
+    document.querySelectorAll('.read-more, .button-section').forEach(function(el){
+      var txt = (el.textContent || '').trim().toLowerCase();
+      if (txt === 'leer más' || txt === 'leer mas') {
+        var btn = el.closest('.button-section') || el;
+        btn.style.display = 'none';
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', hideLeerMas);
+  } else { hideLeerMas(); }
+  setTimeout(hideLeerMas, 500);
+  setTimeout(hideLeerMas, 1500);
+})();
+</script>
+
+<script>
 /* === Toggle de som no vídeo ao clicar no alto-falante === */
 (function(){
   function bindAudioToggles(){
