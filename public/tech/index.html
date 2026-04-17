@@ -7406,4 +7406,32 @@ Si quieres estudiar en TECH, ponte en contacto con nosotros. Un asesor personal 
 <script src="js/rocket-loader.min.js" data-cf-settings="3efeabd8ebfa91fdebaabe65-|49" defer=""></script><script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" data-cf-beacon="{" version":"2024.11.0","token":"e7bed84778be4c9794ce2fca2fe4b5e6","server_timing":{"name":{"cfcachestatus":true,"cfedge":true,"cfextpri":true,"cfl4":true,"cforigin":true,"cfspeedbrain":true},"location_startswith":null}}"="" crossorigin="anonymous"></script>
 
 
+<script>
+(function(){
+  function init(){
+    var cards = document.querySelectorAll('.home-page-content-section-areagrid .grid-item-container');
+    if(!cards.length) return;
+    if(!('IntersectionObserver' in window)){
+      cards.forEach(function(c){ c.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          var el = entry.target;
+          // pequeno delay escalonado por coluna pra ficar fluido
+          var idx = Array.prototype.indexOf.call(el.parentNode.children, el);
+          var delay = (idx % 3) * 120;
+          setTimeout(function(){ el.classList.add('is-visible'); }, delay);
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    cards.forEach(function(c){ io.observe(c); });
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+})();
+</script>
 </body></html>
