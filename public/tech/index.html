@@ -505,16 +505,17 @@
 /* Section-1 Forbes desktop layout */
 .section-1{position:relative;min-height:520px;background:#fff !important;}
 .section-1 .image-background{display:none !important;}
-.section-1 .home-section-wrapper{position:relative;z-index:2;background:#fff !important;padding:40px 5% !important;display:grid !important;grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;column-gap:40px;}
-.section-1 .title-home-section{grid-column:1 / -1;margin-bottom:20px;}
-.section-1 .title-page-content{color:#20b847 !important;text-shadow:none !important;}
+.section-1 .home-section-wrapper{position:relative;z-index:2;background:#fff !important;padding:40px 5% !important;display:grid !important;grid-template-columns:2fr 1fr;grid-template-rows:auto auto auto;column-gap:40px;row-gap:20px;}
+.section-1 .title-home-section{grid-column:1 / -1;margin-bottom:10px;}
+.section-1 .title-page-content{color:#20b847 !important;text-shadow:none !important;font-weight:300 !important;}
+.section-1 .title-page-content strong, .section-1 .title-page-content b{font-weight:700 !important;}
 .section-1 [style*="order: 2"]{grid-column:1 / 2;grid-row:2;}
-.section-1 .order-image-section{display:flex !important;grid-column:2 / 3;grid-row:2;align-items:center;justify-content:center;background:url('https://www.techtitute.com/techtitute/images/home-sections/forbes.jpg.webp') center center no-repeat;background-size:contain;min-height:300px;max-height:340px;height:340px;overflow:hidden;}
+.section-1 .order-image-section{display:flex !important;grid-column:2 / 3;grid-row:2 / span 2;align-items:center;justify-content:center;background:url('https://www.techtitute.com/techtitute/images/home-sections/forbes.jpg.webp') center center no-repeat;background-size:contain;min-height:300px;max-height:380px;height:100%;overflow:hidden;}
 .section-1 .order-image-section .image-back-mobile-section{display:none;}
 .section-1 .paragraphs-home-section{display:flex !important;flex-direction:row !important;gap:30px;flex-wrap:nowrap;}
-.section-1 .paragraphs-home-section .paragraph{flex:1;color:#333 !important;text-shadow:none !important;}
-.section-1 .bottom-home-section{grid-column:1 / -1;grid-row:3;display:flex !important;flex-direction:row-reverse !important;align-items:center;justify-content:flex-end;gap:30px;margin-top:30px;}
-.section-1 .quote-button-section-quote{width:auto !important;}
+.section-1 .paragraphs-home-section .paragraph{flex:1;color:#333 !important;text-shadow:none !important;font-size:14px;line-height:1.5;}
+.section-1 .bottom-home-section{grid-column:1 / 2;grid-row:3;display:flex !important;flex-direction:row !important;align-items:center;justify-content:flex-start;gap:30px;margin-top:20px;}
+.section-1 .quote-button-section-quote{width:auto !important;flex:1;}
 .section-1 .quote-button-section-button{width:auto !important;}
 .section-1 .quote-text{color:#333 !important;text-shadow:none !important;font-style:italic;}
 .section-1 .quote-section .icon path{fill:#20b847 !important;}
