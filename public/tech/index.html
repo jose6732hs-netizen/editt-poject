@@ -7805,7 +7805,33 @@ footer a:hover { color: #f1bd19 !important; }
   color: #fff !important;
   text-shadow: 0 2px 8px rgba(0,0,0,.55), 0 0 2px rgba(0,0,0,.45);
 }
+/* Força imagens de fundo a aparecerem mesmo com lazyBackground */
+.home-section .image-background {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 320px;
+  padding: 0 !important;
+  background-image: var(--lazy-bg) !important;
+}
 </style>
+<script>
+/* Resolve lazyBackground: copia data-bg/data-src para background-image */
+(function(){
+  function loadLazy(){
+    document.querySelectorAll('.home-section .image-background, .home-section .lazyBackground').forEach(function(el){
+      var url = el.getAttribute('data-bg') || el.getAttribute('data-src') || el.getAttribute('data-background') || el.getAttribute('data-image');
+      if(url){
+        el.style.backgroundImage = 'url("'+url+'")';
+        el.classList.remove('lazyBackground');
+      }
+    });
+  }
+  if(document.readyState !== 'loading') loadLazy();
+  else document.addEventListener('DOMContentLoaded', loadLazy);
+  setTimeout(loadLazy, 1500);
+})();
+</script>
 
 <script>
 /* === Remove todos os botões "Leer más" === */
