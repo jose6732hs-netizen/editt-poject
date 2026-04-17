@@ -7644,14 +7644,16 @@ Si quieres estudiar en Estudiar, ponte en contacto con nosotros. Un asesor perso
   display: none !important;
 }
 /* Padroniza os badges visíveis (apenas os com <img>) */
+/* Fileira horizontal de logos sobre fundo azul, sem círculo branco */
 .award-box {
   display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
+  flex-wrap: nowrap !important;
+  justify-content: space-around !important;
   align-items: center !important;
-  gap: 24px !important;
-  padding: 32px 16px !important;
+  gap: 16px !important;
+  padding: 28px 24px !important;
   background: #0b2e4e !important;
+  overflow-x: auto;
 }
 /* === Força rodapé azul === */
 footer.page-footer,
@@ -7664,44 +7666,51 @@ footer .container-fluid,
   background: #0b2e4e !important;
   color: #fff !important;
 }
-footer a, footer .footer-nav-link, footer .footer-group-title {
-  color: #fff !important;
-}
-footer .footer-nav-link a, footer a.footer-nav-link {
-  color: #cfe0f5 !important;
-}
+footer a, footer .footer-nav-link, footer .footer-group-title { color: #fff !important; }
+footer .footer-nav-link a, footer a.footer-nav-link { color: #cfe0f5 !important; }
 footer a:hover { color: #f1bd19 !important; }
+
 .award-box .course-main-data {
-  flex: 0 0 auto;
+  flex: 1 1 0 !important;
   margin: 0 !important;
-}
-.award-box .award-badge.footer-badge {
-  width: 130px !important;
-  height: 130px !important;
-  padding: 14px !important;
-  background: #fff !important;
-  border-radius: 50% !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,.12) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  transition: transform .25s ease, box-shadow .25s ease;
+  min-width: 0 !important;
 }
-.award-box .award-badge.footer-badge:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 18px rgba(0,0,0,.18) !important;
+.award-box .course-main-data a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
 }
+.award-box .award-badge.footer-badge {
+  width: auto !important;
+  height: 70px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform .25s ease;
+}
+.award-box .award-badge.footer-badge:hover { transform: translateY(-3px); box-shadow: none !important; }
 .award-box .award-badge.footer-badge .award-image,
 .award-box .award-badge.footer-badge img.award-image {
-  max-width: 100% !important;
-  max-height: 100% !important;
+  max-height: 70px !important;
   width: auto !important;
   height: auto !important;
+  max-width: 140px !important;
   object-fit: contain !important;
+  filter: none !important;
 }
-@media (max-width: 600px) {
-  .award-box { gap: 14px !important; padding: 20px 8px !important; }
-  .award-box .award-badge.footer-badge { width: 90px !important; height: 90px !important; padding: 10px !important; }
+@media (max-width: 768px) {
+  .award-box { flex-wrap: wrap !important; gap: 18px !important; padding: 20px 8px !important; }
+  .award-box .course-main-data { flex: 0 0 auto !important; }
+  .award-box .award-badge.footer-badge { height: 50px !important; }
+  .award-box .award-badge.footer-badge .award-image { max-height: 50px !important; max-width: 100px !important; }
 }
 
 /* Cursor pointer no controle de áudio */
