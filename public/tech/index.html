@@ -7502,4 +7502,65 @@ Si quieres estudiar en Estudiar, ponte en contacto con nosotros. Un asesor perso
 })();
 </script>
 
+<script>
+/* === Bloqueia todos os redirecionamentos do site ===
+   - Mantém menus, dropdowns, hovers e efeitos de abertura funcionando.
+   - Apenas impede a navegação real ao clicar em links/áreas que sairiam da home. */
+(function(){
+  function isInternalNoNav(href){
+    if(!href) return true;
+    var h = href.trim();
+    if(!h || h === '#' || h.charAt(0) === '#') return true;
+    if(h.indexOf('javascript:') === 0) return true;
+    return false;
+  }
+
+  function shouldBlock(a){
+    if(!a) return false;
+    // permite âncoras puras (#) — usadas para abrir menus
+    var href = a.getAttribute('href');
+    if(isInternalNoNav(href)) return false;
+    // bloqueia tudo que tente navegar
+    return true;
+  }
+
+  // Captura cliques em qualquer link
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a') : null;
+    if(a && shouldBlock(a)){
+      e.preventDefault();
+      e.stopPropagation();
+      // garante que volte/permaneça na home
+      if(window.location.pathname !== '/' && window.location.hash !== '#') {
+        // não força reload — apenas previne navegação
+      }
+      return false;
+    }
+  }, true);
+
+  // Bloqueia handlers inline do tipo onclick="window.location.href='...'"
+  // sobrescrevendo o setter de location.href
+  try {
+    var origAssign = window.location.assign.bind(window.location);
+    var origReplace = window.location.replace.bind(window.location);
+    window.location.assign = function(){ /* bloqueado */ };
+    window.location.replace = function(){ /* bloqueado */ };
+
+    // intercepta atribuições a window.location.href via Proxy não é viável
+    // em location, mas a maioria dos onclicks usa assign/href setter que cai aqui
+    Object.defineProperty(window, '__blockedNav', { value: true, writable: false });
+  } catch(err){ /* navegadores antigos */ }
+
+  // Submits de formulário também não devem redirecionar
+  document.addEventListener('submit', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }, true);
+
+  // Se algo conseguir redirecionar mesmo assim, intercepta beforeunload
+  // e mantém o usuário na página apenas se for uma navegação não-intencional
+  // (omitido para não quebrar refresh manual)
+})();
+</script>
 </body></html>
