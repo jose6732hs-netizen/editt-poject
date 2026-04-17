@@ -494,8 +494,8 @@
                     <div class="active carousel-item">
                         <div class="video">
                             <video autoplay="" muted="" loop="" playsinline="" preload="auto" class="video-fluid slide-wide lazy" poster="https://www.techtitute.com/techtitute/videos/poster/tech-main-poster.jpg.webp">
-                                <source src="https://www.techtitute.com/techtitute/videos/es/Global_university_universidad.mp4" type="video/mp4">
-                                <source src="https://www.techtitute.com/techtitute/videos/es/Global_university_universidad.mp4" type="video/mp4">
+                                <source data-src="https://www.techtitute.com/techtitute/videos/es/Global_university_universidad.mp4" type="video/webm">
+                                <source data-src="https://www.techtitute.com/techtitute/videos/es/Global_university_universidad.mp4" type="video/mp4">
                             </video>
                             <div class="audio-control">
                                 <span class="audio-toggle muted">
@@ -512,8 +512,8 @@
                     <div class=" carousel-item">
                         <div class="video">
                             <video autoplay="" muted="" loop="" playsinline="" preload="auto" class="video-fluid slide-wide lazy" poster="https://www.techtitute.com/techtitute/videos/poster/tech-main-poster.jpg.webp">
-                                <source src="https://www.techtitute.com/techtitute/videos/es/GloTech_Evolucion.mp4" type="video/mp4">
-                                <source src="https://www.techtitute.com/techtitute/videos/es/GloTech_Evolucion.mp4" type="video/mp4">
+                                <source data-src="https://www.techtitute.com/techtitute/videos/es/GloTech_Evolucion.mp4" type="video/webm">
+                                <source data-src="https://www.techtitute.com/techtitute/videos/es/GloTech_Evolucion.mp4" type="video/mp4">
                             </video>
                             <div class="audio-control">
                                 <span class="audio-toggle muted">
@@ -530,8 +530,8 @@
                     <div class=" carousel-item">
                         <div class="video">
                             <video autoplay="" muted="" loop="" playsinline="" preload="auto" class="video-fluid slide-wide lazy" poster="https://www.techtitute.com/techtitute/videos/poster/tech-main-poster.jpg.webp">
-                                <source src="https://www.techtitute.com/techtitute/videos/es/Global_university_re-learning.mp4" type="video/mp4">
-                                <source src="https://www.techtitute.com/techtitute/videos/es/Global_university_re-learning.mp4" type="video/mp4">
+                                <source data-src="https://www.techtitute.com/techtitute/videos/es/Global_university_re-learning.mp4" type="video/webm">
+                                <source data-src="https://www.techtitute.com/techtitute/videos/es/Global_university_re-learning.mp4" type="video/mp4">
                             </video>
                             <div class="audio-control">
                                 <span class="audio-toggle muted">
@@ -7762,6 +7762,29 @@ footer a:hover { color: #f1bd19 !important; }
   } else { hideLeerMas(); }
   setTimeout(hideLeerMas, 500);
   setTimeout(hideLeerMas, 1500);
+})();
+</script>
+
+<script>
+/* Carrega as imagens de fundo do carrossel de cursos a partir de data-img-url */
+(function(){
+  function loadBgs(){
+    document.querySelectorAll('#course-carousel-home .bg-img[data-img-url]').forEach(function(el){
+      if (el.__bgLoaded) return;
+      var url = el.getAttribute('data-img-url');
+      if (url) {
+        el.style.backgroundImage = "url('" + url + "')";
+        el.style.backgroundSize = 'cover';
+        el.style.backgroundPosition = 'center';
+        el.__bgLoaded = true;
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadBgs);
+  } else { loadBgs(); }
+  setTimeout(loadBgs, 400);
+  setTimeout(loadBgs, 1500);
 })();
 </script>
 
