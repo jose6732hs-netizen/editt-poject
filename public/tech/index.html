@@ -1418,70 +1418,73 @@ Impulsa tus habilidades en la Traducción e Interpretación con este Doctorado 1
 
 
 
-<div data-buttonid="button-touch-4" data-color="" data-textcolor="" class="home-section section-4 hover contain onPassiveListennerTouchSection">
-        <div class="image-background clear-position elementWithBackgroundImage lazyBackground"></div>
-   
-    <div class="row home-section-wrapper home-section-back-color">
-        
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 image-section order-image-section">
-                <div class="image-background-mobile image-back-mobile-section lazyBackground">
-
-                </div>
-            </div>
-    
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 title-home-section anim-trigger fadeInUp title-page-content flex-left section-4 section-title-order">
-
-                    <h2 class="h1-responsive h1-home-responsive title-page-content
-                         ">
-                            participa de <b>la Universidad mejor valorada del mundo</b> por sus alumnos
-                    </h2>
-
-            </div>
-
-            <div class="col-12 " style="order: 2">
-                <div class="row" style="margin: 0 !important">
-                    <div class="col-12 paragraphs-home-section paragraph-section-content anim-trigger fadeInUp">
-                            <div class="paragraph p-0">
-Para Estudiar ofrecer un servicio académico basado en la excelencia es el pilar donde se sustenta todo. Este compromiso nos ha llevado a aunar el mejor claustro docente internacional, la mejor infraestructura digital y los mejores contenidos y materiales multimedia del panorama académico. Gracias a esto somos la única universidad con una calificación global de 4,9 sobre 5 en las principales plataformas internacionales de reseñas públicas, con mas de 25.000 valoraciones públicas en más de 150 países.<br><br> Este 4,9 de valoración posiciona a Estudiar como la universidad mejor valorada del mundo por sus alumnos. Además, este portal de reseñas, el más fiable y prestigioso porque verifica y valida la autenticidad de cada una de las opiniones publicadas, ha concedido a Estudiar su calificación más alta, situándola como la referencia universitaria absoluta a nivel internacional.                            </div>
-                    </div>
-                </div>
-                
-            </div>
-        
-
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bottom-home-section quote-button-section-content anim-trigger fadeInUp">
-                    <div class="quote-section quote-button-section-quote"> 
-                        <style>
-
-.quote-image-mask {
-    background-color: #20b847;
-    mask-size: cover;
-    -webkit-mask-size: cover;
+<!-- Custom Trustpilot Section -->
+<style>
+.tp-custom{position:relative;background:#000 url('https://www.techtitute.com/techtitute/images/home-sections/trustpilot_home.jpg.webp') center center/cover no-repeat;padding:50px 20px;font-family:inherit;color:#fff;overflow:hidden;}
+.tp-custom::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.45);z-index:1;}
+.tp-custom .tp-inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;}
+.tp-custom .tp-title{color:#fff;font-weight:300;font-size:26px;line-height:1.2;margin:0 0 24px;text-shadow:0 2px 6px rgba(0,0,0,.6);}
+.tp-custom .tp-title b{font-weight:700;}
+.tp-custom .tp-grid{display:flex;flex-direction:column;gap:22px;}
+.tp-custom .tp-text{color:#fff;font-size:14px;line-height:1.55;text-shadow:0 1px 4px rgba(0,0,0,.6);}
+.tp-custom .tp-score{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;}
+.tp-custom .tp-score-num{font-size:72px;line-height:1;font-weight:300;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.5);}
+.tp-custom .tp-score-num span{font-size:36px;font-weight:300;opacity:.85;}
+.tp-custom .tp-stars{display:flex;gap:6px;align-items:center;justify-content:center;}
+.tp-custom .tp-stars .star{width:42px;height:42px;background:#ff3a8c;display:flex;align-items:center;justify-content:center;border-radius:2px;}
+.tp-custom .tp-stars .star svg{width:26px;height:26px;fill:#fff;}
+.tp-custom .tp-score-label{display:flex;align-items:center;gap:8px;font-size:18px;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6);}
+.tp-custom .tp-score-label .pink-star{display:inline-block;width:22px;height:22px;background:#ff3a8c;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
+.tp-custom .tp-bottom{display:flex;flex-direction:column;gap:18px;align-items:flex-start;margin-top:14px;}
+.tp-custom .tp-quote{display:flex;align-items:center;gap:12px;color:#fff;font-style:italic;font-size:15px;text-shadow:0 1px 4px rgba(0,0,0,.6);}
+.tp-custom .tp-quote svg.q{flex-shrink:0;width:36px;height:auto;}
+.tp-custom .tp-quote svg.q path{fill:#20b847;}
+@media (min-width:768px){
+  .tp-custom{padding:60px 40px;min-height:480px;}
+  .tp-custom .tp-title{font-size:32px;margin-bottom:30px;}
+  .tp-custom .tp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:30px;align-items:start;}
+  .tp-custom .tp-text.t1{grid-column:1;grid-row:1;}
+  .tp-custom .tp-text.t2{grid-column:2;grid-row:1;}
+  .tp-custom .tp-score{grid-column:3;grid-row:1;}
+  .tp-custom .tp-score-num{font-size:90px;}
+  .tp-custom .tp-bottom{grid-column:1 / span 3;grid-row:2;margin-top:10px;}
 }
-
+@media (min-width:992px){
+  .tp-custom{padding:70px 60px;}
+  .tp-custom .tp-title{font-size:38px;}
+  .tp-custom .tp-score-num{font-size:110px;}
+  .tp-custom .tp-score-num span{font-size:48px;}
+  .tp-custom .tp-stars .star{width:48px;height:48px;}
+}
 </style>
-
-<div class="quote quote-section-quote  ">
-    
-            <svg aria-hidden="true" focusable="false" class="icon custom-quote-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.417 48.813" labelledby="quote-outline">
-                <title id="quote-outline">Estudiar quote</title>
-                <path fill="#20b847" d="M47.759,47.817c-7.887,0-13.61-7.109-13.61-16.904c0-5.963,2.217-12.157,6.41-17.911  c3.17-4.241,8.579-8.816,14.123-11.945c0.221-0.121,0.498-0.053,0.631,0.163l4.658,7.533c0.07,0.112,0.09,0.249,0.054,0.375  c-0.036,0.127-0.124,0.233-0.242,0.292c-6.103,3.06-9.826,7.974-10.802,14.24c0.467-0.065,0.794-0.065,1.275-0.065  c5.304,0,9.619,5.125,9.619,11.426C59.875,42.196,54.553,47.817,47.759,47.817z M54.752,2.099  c-5.299,3.06-10.418,7.422-13.437,11.461c-4.073,5.588-6.227,11.59-6.227,17.353c0,9.25,5.328,15.963,12.67,15.963  c6.268,0,11.176-5.207,11.176-11.855c0-5.684-3.974-10.487-8.679-10.487c-0.653,0-0.952,0-1.736,0.162  c-0.146,0.032-0.302-0.012-0.413-0.115c-0.112-0.103-0.166-0.253-0.147-0.403c0.839-6.735,4.619-12.038,10.946-15.363L54.752,2.099z   M14.987,47.817c-7.887,0-13.611-7.109-13.611-16.904c0-5.961,2.217-12.155,6.411-17.911c3.17-4.241,8.582-8.816,14.124-11.945  c0.22-0.121,0.499-0.053,0.63,0.163l4.658,7.533c0.07,0.112,0.089,0.249,0.054,0.375c-0.037,0.127-0.124,0.233-0.243,0.292  c-6.101,3.06-9.825,7.974-10.801,14.24c0.466-0.065,0.793-0.065,1.274-0.065c5.214,0,9.62,5.233,9.62,11.426  C27.103,42.196,21.781,47.817,14.987,47.817z M21.98,2.099C16.683,5.158,11.562,9.521,8.542,13.56  c-4.073,5.59-6.227,11.592-6.227,17.353c0,9.25,5.329,15.963,12.671,15.963c6.268,0,11.176-5.207,11.176-11.855  c0-5.684-3.976-10.487-8.68-10.487c-0.652,0-0.95,0-1.735,0.162c-0.146,0.032-0.302-0.012-0.413-0.115  c-0.112-0.103-0.167-0.253-0.148-0.403c0.839-6.735,4.619-12.037,10.945-15.363L21.98,2.099z"></path>
-            </svg>
-
-
-        <h2 style="text-shadow:;" class="h1-responsive quote-text quote-section-h2 quote-text-shadow light
-              ">
-            La universidad mejor valorada por sus alumnos”
-        </h2>
-</div>
-
-
-
-                    </div>
-            </div>
+<section class="tp-custom">
+  <div class="tp-inner">
+    <h2 class="tp-title">participa de <b>la Universidad mejor valorada del mundo</b> por sus alumnos</h2>
+    <div class="tp-grid">
+      <div class="tp-text t1">Para TECH ofrecer un servicio académico basado en la excelencia es el pilar donde se sustenta todo. Este compromiso nos ha llevado a aunar el mejor claustro docente internacional, la mejor infraestructura digital y los mejores contenidos y materiales multimedia del panorama académico. Gracias a esto somos la única universidad con una calificación global de 4,9 sobre 5 en las principales plataformas internacionales de reseñas públicas, con mas de 25.000 valoraciones públicas en más de 150 países.</div>
+      <div class="tp-text t2">Este 4,9 de valoración posiciona a TECH como la universidad mejor valorada del mundo por sus alumnos. Además, este portal de reseñas, el más fiable y prestigioso porque verifica y valida la autenticidad de cada una de las opiniones publicadas, ha concedido a TECH su calificación más alta, situándola como la referencia universitaria absoluta a nivel internacional.</div>
+      <div class="tp-score">
+        <div class="tp-score-num">4.9<span>/5</span></div>
+        <div class="tp-stars">
+          <div class="star"><svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9.5 17,14 18.5,21 12,17.5 5.5,21 7,14 2,9.5 9,9"/></svg></div>
+          <div class="star"><svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9.5 17,14 18.5,21 12,17.5 5.5,21 7,14 2,9.5 9,9"/></svg></div>
+          <div class="star"><svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9.5 17,14 18.5,21 12,17.5 5.5,21 7,14 2,9.5 9,9"/></svg></div>
+          <div class="star"><svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9.5 17,14 18.5,21 12,17.5 5.5,21 7,14 2,9.5 9,9"/></svg></div>
+          <div class="star"><svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9.5 17,14 18.5,21 12,17.5 5.5,21 7,14 2,9.5 9,9"/></svg></div>
+        </div>
+        <div class="tp-score-label"><span class="pink-star"></span>global score</div>
+      </div>
+      <div class="tp-bottom">
+        <div class="tp-quote">
+          <svg class="q" viewBox="0 0 61.417 48.813" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#20b847" d="M47.759,47.817c-7.887,0-13.61-7.109-13.61-16.904c0-5.963,2.217-12.157,6.41-17.911c3.17-4.241,8.579-8.816,14.123-11.945c0.221-0.121,0.498-0.053,0.631,0.163l4.658,7.533c0.07,0.112,0.09,0.249,0.054,0.375c-0.036,0.127-0.124,0.233-0.242,0.292c-6.103,3.06-9.826,7.974-10.802,14.24c0.467-0.065,0.794-0.065,1.275-0.065c5.304,0,9.619,5.125,9.619,11.426C59.875,42.196,54.553,47.817,47.759,47.817z M14.987,47.817c-7.887,0-13.611-7.109-13.611-16.904c0-5.961,2.217-12.155,6.411-17.911c3.17-4.241,8.582-8.816,14.124-11.945c0.22-0.121,0.499-0.053,0.63,0.163l4.658,7.533c0.07,0.112,0.089,0.249,0.054,0.375c-0.037,0.127-0.124,0.233-0.243,0.292c-6.101,3.06-9.825,7.974-10.801,14.24c0.466-0.065,0.793-0.065,1.274-0.065c5.214,0,9.62,5.233,9.62,11.426C27.103,42.196,21.781,47.817,14.987,47.817z"></path></svg>
+          <span>La universidad mejor valorada por sus alumnos”</span>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
 
-</div>
+
 
 
 
