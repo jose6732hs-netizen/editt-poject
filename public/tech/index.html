@@ -7734,4 +7734,61 @@ Si quieres estudiar en Estudiar, ponte en contacto con nosotros. Un asesor perso
   } else { init(); }
 })();
 </script>
+
+<script>
+/* === Substitui dinamicamente qualquer telefone/email antigo injetado pelo framework === */
+(function(){
+  var NEW_PHONE_DISPLAY = '+55 35 99919-6377';
+  var NEW_PHONE_RAW     = '5535999196377';
+  var NEW_EMAIL         = 'Info@techtitute.com.br';
+
+  var OLD_PHONES = [/\(\+34\)\s*965\s*0?75\s*0?67/g, /\+34\s*965\s*0?75\s*0?67/g, /965\s*075\s*067/g];
+  var OLD_EMAIL  = /information@techtitute\.com/gi;
+
+  function replaceText(node){
+    var t = node.nodeValue;
+    var orig = t;
+    OLD_PHONES.forEach(function(re){ t = t.replace(re, NEW_PHONE_DISPLAY); });
+    t = t.replace(OLD_EMAIL, NEW_EMAIL);
+    if (t !== orig) node.nodeValue = t;
+  }
+
+  function walk(root){
+    if (!root) return;
+    if (root.nodeType === 3) { replaceText(root); return; }
+    if (root.nodeType !== 1) return;
+    if (root.tagName === 'A') {
+      var href = root.getAttribute('href') || '';
+      if (/tel:.*965.?0?75.?0?67/i.test(href) || /tel:.*\+?34/i.test(href)) {
+        root.setAttribute('href', 'https://wa.me/' + NEW_PHONE_RAW);
+        root.setAttribute('target', '_blank');
+        root.setAttribute('rel', 'noopener');
+      }
+      if (/mailto:information@techtitute\.com/i.test(href)) {
+        root.setAttribute('href', 'mailto:' + NEW_EMAIL);
+      }
+    }
+    var kids = root.childNodes;
+    for (var i = 0; i < kids.length; i++) walk(kids[i]);
+  }
+
+  function scan(){ walk(document.body); }
+
+  function init(){
+    scan();
+    var mo = new MutationObserver(function(muts){
+      muts.forEach(function(m){
+        m.addedNodes && m.addedNodes.forEach(function(n){ walk(n); });
+        if (m.type === 'characterData') replaceText(m.target);
+      });
+    });
+    mo.observe(document.body, { childList:true, subtree:true, characterData:true });
+    setInterval(scan, 1500);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+})();
+</script>
 </body></html>
