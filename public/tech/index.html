@@ -886,6 +886,39 @@ Impulsa tus habilidades en la Traducción e Interpretación con este Doctorado 1
         transform: translateY(-4px);
         box-shadow: 0 14px 30px rgba(0,0,0,.18);
     }
+
+    /* === Scroll reveal: cards entram lateralmente === */
+    .home-page-content-section-areagrid .grid-item-container {
+        opacity: 0;
+        transform: translateX(-80px);
+        transition: opacity .8s cubic-bezier(.22,.61,.36,1),
+                    transform .8s cubic-bezier(.22,.61,.36,1),
+                    box-shadow .35s ease;
+        will-change: transform, opacity;
+    }
+    /* Coluna do meio sobe */
+    .home-page-content-section-areagrid .row.show.no-gutters > .grid-item-container:nth-child(3n+2) {
+        transform: translateY(60px);
+    }
+    /* Coluna direita entra pela direita */
+    .home-page-content-section-areagrid .row.show.no-gutters > .grid-item-container:nth-child(3n+3) {
+        transform: translateX(80px);
+    }
+    /* Estado revelado */
+    .home-page-content-section-areagrid .grid-item-container.is-visible {
+        opacity: 1 !important;
+        transform: translate(0, 0) !important;
+    }
+    .home-page-content-section-areagrid .grid-item-container.is-visible:hover {
+        transform: translateY(-4px) !important;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .home-page-content-section-areagrid .grid-item-container {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+    }
     .home-page-content-section-areagrid .grid-item-container .view,
     .home-page-content-section-areagrid .grid-item-container .grid-background-image {
         position: absolute !important;
@@ -7373,4 +7406,32 @@ Si quieres estudiar en TECH, ponte en contacto con nosotros. Un asesor personal 
 <script src="js/rocket-loader.min.js" data-cf-settings="3efeabd8ebfa91fdebaabe65-|49" defer=""></script><script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" data-cf-beacon="{" version":"2024.11.0","token":"e7bed84778be4c9794ce2fca2fe4b5e6","server_timing":{"name":{"cfcachestatus":true,"cfedge":true,"cfextpri":true,"cfl4":true,"cforigin":true,"cfspeedbrain":true},"location_startswith":null}}"="" crossorigin="anonymous"></script>
 
 
+<script>
+(function(){
+  function init(){
+    var cards = document.querySelectorAll('.home-page-content-section-areagrid .grid-item-container');
+    if(!cards.length) return;
+    if(!('IntersectionObserver' in window)){
+      cards.forEach(function(c){ c.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          var el = entry.target;
+          // pequeno delay escalonado por coluna pra ficar fluido
+          var idx = Array.prototype.indexOf.call(el.parentNode.children, el);
+          var delay = (idx % 3) * 120;
+          setTimeout(function(){ el.classList.add('is-visible'); }, delay);
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    cards.forEach(function(c){ io.observe(c); });
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+})();
+</script>
 </body></html>
