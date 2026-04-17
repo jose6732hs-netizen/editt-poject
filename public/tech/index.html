@@ -252,6 +252,46 @@
     </script>
 
     
+<!-- === Estudiar Brand Overrides (do Manual de Marca) === -->
+<link rel="icon" href="images/estudiar-icon.jpg" type="image/jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --estudiar-blue-dark: #0E2C50;
+    --estudiar-blue:      #0093ED;
+    --estudiar-blue-deep: #000596;
+    --estudiar-white:     #FFFFFF;
+  }
+  /* Tipografia oficial: Montserrat */
+  html, body, body *, h1, h2, h3, h4, h5, h6, p, a, span, div, button, input, textarea, select, label, li {
+    font-family: 'Montserrat', 'Roboto', system-ui, -apple-system, sans-serif !important;
+  }
+  /* Substitui todos os tons antigos do site (azul tech) pela paleta Estudiar */
+  .cls-6, .svg-color2-blue, .white-bg .color2 { fill: var(--estudiar-blue) !important; }
+  .cls-4 { fill: var(--estudiar-blue-dark) !important; }
+  /* Backgrounds azul-escuro do header/footer */
+  .footer-blue, .footer-areas-n-extra, .row-contact, header.fixed-header, .fixed-header,
+  app-header .navbar, .navbar-fixed-top, .menu-blue, .blue-bg {
+    background-color: var(--estudiar-blue-dark) !important;
+  }
+  /* Links/destaques azul claro */
+  a, .h1-home-responsive b, .quote-text b, .text-primary { color: var(--estudiar-blue) !important; }
+  /* Botões primários */
+  .btn-primary, .btn.btn-primary, button.primary {
+    background-color: var(--estudiar-blue) !important;
+    border-color: var(--estudiar-blue) !important;
+    color: #fff !important;
+  }
+  .btn-primary:hover { background-color: var(--estudiar-blue-dark) !important; border-color: var(--estudiar-blue-dark) !important; }
+  /* Logo do header — fundo branco para integrar com o topo */
+  .estudiar-brand-logo { background: #fff; padding: 4px 8px; border-radius: 4px; }
+  /* Logo do footer — fundo já azul, sem padding */
+  .estudiar-footer-logo { background: transparent; }
+  /* Mantém o destaque "Estudiar" em azul */
+  b[style*="color"] { color: var(--estudiar-blue) !important; }
+</style>
 </head>
 
 
