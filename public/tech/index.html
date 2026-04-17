@@ -259,6 +259,24 @@
 <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M2RFJPK" height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </noscript>
+<style>
+  header { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; transition: background-color .3s ease, box-shadow .3s ease; background-color: transparent; }
+  header .navbar, header app-header, header .app-menu-header, header .fixed-header, header .fixed-top-menu { background-color: transparent !important; box-shadow: none !important; transition: background-color .3s ease, box-shadow .3s ease, color .3s ease; }
+  header .nav-link, header .navbar-nav-item-link, header a { color: #fff !important; transition: color .3s ease; }
+  body.header-scrolled header { background-color: #fff !important; box-shadow: 0 2px 8px rgba(0,0,0,.1); }
+  body.header-scrolled header .navbar, body.header-scrolled header app-header, body.header-scrolled header .app-menu-header, body.header-scrolled header .fixed-header, body.header-scrolled header .fixed-top-menu { background-color: #fff !important; }
+  body.header-scrolled header .nav-link, body.header-scrolled header .navbar-nav-item-link, body.header-scrolled header a { color: #124a83 !important; }
+</style>
+<script>
+  (function(){
+    function onScroll(){
+      if (window.scrollY > 50) document.body.classList.add('header-scrolled');
+      else document.body.classList.remove('header-scrolled');
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    document.addEventListener('DOMContentLoaded', onScroll);
+  })();
+</script>
 <header>
     <app-header>
         <nav class="navbar navbar-expand-md scrolling-navbar fixed-header">
