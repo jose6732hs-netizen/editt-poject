@@ -7220,4 +7220,49 @@ Si quieres estudiar en TECH, ponte en contacto con nosotros. Un asesor personal 
 <script src="js/rocket-loader.min.js" data-cf-settings="3efeabd8ebfa91fdebaabe65-|49" defer=""></script><script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" data-cf-beacon="{" version":"2024.11.0","token":"e7bed84778be4c9794ce2fca2fe4b5e6","server_timing":{"name":{"cfcachestatus":true,"cfedge":true,"cfextpri":true,"cfl4":true,"cforigin":true,"cfspeedbrain":true},"location_startswith":null}}"="" crossorigin="anonymous"></script>
 
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Prevent all 404s by intercepting clicks on internal links that don't exist
+        document.body.addEventListener('click', function(e) {
+            var target = e.target.closest('a');
+            if (target) {
+                var href = target.getAttribute('href');
+                // Check if it's an internal relative link (doesn't start with http/https or #)
+                if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('javascript:')) {
+                    e.preventDefault();
+                    console.log('Intercepted internal link:', href);
+                    // Instead of a 404, we can scroll to top or just show a message
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    // Optional: You could show a message
+                    // alert('Esta página será implementada em breve.');
+                }
+                
+                // If it's an external link, we can keep it if we want, 
+                // but the user said "faca ficar interna do projeto".
+                // If we want to strictly keep it internal, we prevent external links too.
+                if (href && (href.startsWith('http://') || href.startsWith('https://'))) {
+                    // Check if it's NOT the current domain
+                    var currentDomain = window.location.hostname;
+                    if (href.indexOf(currentDomain) === -1) {
+                        e.preventDefault();
+                        console.log('Intercepted external link:', href);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                }
+            }
+        });
+        
+        // Fix all hrefs on load to avoid right-click open in new tab 404s
+        var links = document.querySelectorAll('a');
+        links.forEach(function(link) {
+            var href = link.getAttribute('href');
+            if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('javascript:')) {
+                // If it's a known internal path that we don't have, point to #
+                link.setAttribute('data-original-href', href);
+                link.setAttribute('href', '#');
+            }
+        });
+    });
+</script>
 </body></html>
