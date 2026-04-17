@@ -928,6 +928,19 @@ Impulsa tus habilidades en la Traducción e Interpretación con este Doctorado 1
 <style type="text/css">
     .course-carousel-home-item > .course-carousel-home-item { position: absolute }
 
+    /* === Zoom (Ken Burns) no slide ativo do carrossel === */
+    #course-carousel-home .carousel-item { overflow: hidden; }
+    #course-carousel-home .carousel-item .bg-img,
+    #course-carousel-home .carousel-item img {
+      transform: scale(1);
+      transition: transform 5s ease-out;
+      will-change: transform;
+    }
+    #course-carousel-home .carousel-item.active .bg-img,
+    #course-carousel-home .carousel-item.active img {
+      transform: scale(1.12);
+    }
+
     /* === Oferta Académica - grid premium === */
     .home-page-content-section-areagrid { padding: 56px 0; background: #fafafa; }
     .home-page-content-section-areagrid .container-fluid.contain {
