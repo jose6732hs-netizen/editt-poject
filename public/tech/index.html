@@ -2146,7 +2146,7 @@ Si quieres estudiar en Estudiar, ponte en contacto con nosotros. Un asesor perso
             </div>
         <div class="row row-contact">
             <div class="footer-brand-container" style="display:flex !important;align-items:center;justify-content:center;padding:20px 0;width:100%;visibility:visible !important;opacity:1 !important;">
-                <img src="images/estudiar-logo.png" alt="Estudiar - Intercâmbio Educacional e Profissional" style="height:140px !important;max-width:90% !important;width:auto !important;display:block !important;object-fit:contain;visibility:visible !important;opacity:1 !important;" />
+                <img src="images/estudiar-logo.png" alt="Estudiar - Intercâmbio Educacional e Profissional" style="height:140px !important;max-width:90% !important;width:auto !important;display:block !important;object-fit:contain;visibility:visible !important;opacity:1 !important;filter:brightness(0) invert(1) !important;" />
             </div>
             <div class="contact">
                 <div class="contact-phone-n-mail">
@@ -7509,10 +7509,12 @@ Si quieres estudiar en Estudiar, ponte en contacto con nosotros. Un asesor perso
 
   function shouldBlock(a){
     if(!a) return false;
-    // permite âncoras puras (#) — usadas para abrir menus
     var href = a.getAttribute('href');
     if(isInternalNoNav(href)) return false;
-    // bloqueia tudo que tente navegar
+    // permite contatos (WhatsApp, telefone, e-mail)
+    if(/^(mailto:|tel:|sms:|whatsapp:)/i.test(href)) return false;
+    if(/wa\.me\//i.test(href) || /api\.whatsapp\.com/i.test(href)) return false;
+    // bloqueia o resto
     return true;
   }
 
