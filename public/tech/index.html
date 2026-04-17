@@ -7635,4 +7635,103 @@ Si quieres estudiar en Estudiar, ponte en contacto con nosotros. Un asesor perso
   } else { init(); }
 })();
 </script>
+
+<style>
+/* === Conserto da seção de prêmios no rodapé === */
+/* Esconde os fundos CSS sprite quebrados (que carregavam imagens externas inexistentes) */
+.award-badge.NBA-award-es,
+.award-badge.forbes-award-es,
+.award-badge.employability-award-es,
+.award-badge.n1-world-award-es,
+.award-badge.finantial-times-award-es,
+.award-badge.trustpilot-award-es,
+.award-badge.google-partner-award-es {
+  display: none !important;
+}
+/* Padroniza os badges visíveis (apenas os com <img>) */
+.award-box {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 24px !important;
+  padding: 32px 16px !important;
+  background: #fff;
+}
+.award-box .course-main-data {
+  flex: 0 0 auto;
+  margin: 0 !important;
+}
+.award-box .award-badge.footer-badge {
+  width: 130px !important;
+  height: 130px !important;
+  padding: 14px !important;
+  background: #fff !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,.12) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.award-box .award-badge.footer-badge:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0,0,0,.18) !important;
+}
+.award-box .award-badge.footer-badge .award-image,
+.award-box .award-badge.footer-badge img.award-image {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
+@media (max-width: 600px) {
+  .award-box { gap: 14px !important; padding: 20px 8px !important; }
+  .award-box .award-badge.footer-badge { width: 90px !important; height: 90px !important; padding: 10px !important; }
+}
+
+/* Cursor pointer no controle de áudio */
+.audio-control, .audio-toggle { cursor: pointer !important; pointer-events: auto !important; }
+.audio-toggle.muted .volume-up { opacity: .55; }
+.audio-toggle .volume-up { transition: opacity .2s ease; }
+</style>
+
+<script>
+/* === Toggle de som no vídeo ao clicar no alto-falante === */
+(function(){
+  function bindAudioToggles(){
+    document.querySelectorAll('.audio-control, .audio-toggle').forEach(function(ctrl){
+      if (ctrl.__audioBound) return;
+      ctrl.__audioBound = true;
+      ctrl.addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        var wrapper = ctrl.closest('.video') || ctrl.parentElement;
+        var video = wrapper ? wrapper.querySelector('video') : null;
+        if (!video) return;
+        var toggleEl = ctrl.classList.contains('audio-toggle') ? ctrl : ctrl.querySelector('.audio-toggle') || ctrl;
+        if (video.muted) {
+          video.muted = false;
+          try { video.volume = 1; } catch(_){}
+          var p = video.play();
+          if (p && p.catch) p.catch(function(){});
+          toggleEl.classList.remove('muted');
+        } else {
+          video.muted = true;
+          toggleEl.classList.add('muted');
+        }
+      }, true);
+    });
+  }
+  function init(){
+    bindAudioToggles();
+    var mo = new MutationObserver(bindAudioToggles);
+    mo.observe(document.body, { childList:true, subtree:true });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+})();
+</script>
 </body></html>
