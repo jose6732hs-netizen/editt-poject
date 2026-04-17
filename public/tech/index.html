@@ -7486,10 +7486,17 @@ Impulsa tus habilidades en la Traducción e Interpretación con este Doctorado 1
     el.style.cursor = 'default';
   }
 
+  function isAllowed(el){
+    return el && el.closest && el.closest(allowSelectors);
+  }
+
   function applyAll(){
-    document.querySelectorAll(selectors).forEach(disable);
-    // Esconde menus que possam abrir
-    document.querySelectorAll('.dropdown-menu.show, .menu-open, .faculties-menu-desktop-wrapper.show').forEach(function(el){
+    document.querySelectorAll(selectors).forEach(function(el){
+      if(isAllowed(el)) return;
+      disable(el);
+    });
+    // Esconde menus desktop que possam abrir (não toca em sidebar/menu mobile)
+    document.querySelectorAll('.faculties-menu-desktop-wrapper.show').forEach(function(el){
       el.classList.remove('show','menu-open');
       el.style.display = 'none';
     });
@@ -7501,6 +7508,7 @@ Impulsa tus habilidades en la Traducción e Interpretación con este Doctorado 1
     // Bloqueia em fase de captura — antes de qualquer outro listener
     ['click','mousedown','mouseup','touchstart','touchend'].forEach(function(evt){
       document.addEventListener(evt, function(e){
+        if(isAllowed(e.target)) return; // permite hambúrguer e menu mobile
         var t = e.target && e.target.closest ? e.target.closest(selectors) : null;
         if(t) return killEvent(e);
       }, true);
