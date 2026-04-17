@@ -886,6 +886,39 @@ Impulsa tus habilidades en la Traducción e Interpretación con este Doctorado 1
         transform: translateY(-4px);
         box-shadow: 0 14px 30px rgba(0,0,0,.18);
     }
+
+    /* === Scroll reveal: cards entram lateralmente === */
+    .home-page-content-section-areagrid .grid-item-container {
+        opacity: 0;
+        transform: translateX(-80px);
+        transition: opacity .8s cubic-bezier(.22,.61,.36,1),
+                    transform .8s cubic-bezier(.22,.61,.36,1),
+                    box-shadow .35s ease;
+        will-change: transform, opacity;
+    }
+    /* Coluna do meio sobe */
+    .home-page-content-section-areagrid .row.show.no-gutters > .grid-item-container:nth-child(3n+2) {
+        transform: translateY(60px);
+    }
+    /* Coluna direita entra pela direita */
+    .home-page-content-section-areagrid .row.show.no-gutters > .grid-item-container:nth-child(3n+3) {
+        transform: translateX(80px);
+    }
+    /* Estado revelado */
+    .home-page-content-section-areagrid .grid-item-container.is-visible {
+        opacity: 1 !important;
+        transform: translate(0, 0) !important;
+    }
+    .home-page-content-section-areagrid .grid-item-container.is-visible:hover {
+        transform: translateY(-4px) !important;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .home-page-content-section-areagrid .grid-item-container {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+    }
     .home-page-content-section-areagrid .grid-item-container .view,
     .home-page-content-section-areagrid .grid-item-container .grid-background-image {
         position: absolute !important;
