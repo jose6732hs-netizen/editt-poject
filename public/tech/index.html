@@ -7406,9 +7406,28 @@ Si quieres estudiar en Estudiar, ponte en contacto con nosotros. Un asesor perso
 <script src="js/rocket-loader.min.js" data-cf-settings="3efeabd8ebfa91fdebaabe65-|49" defer=""></script><script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" data-cf-beacon="{" version":"2024.11.0","token":"e7bed84778be4c9794ce2fca2fe4b5e6","server_timing":{"name":{"cfcachestatus":true,"cfedge":true,"cfextpri":true,"cfl4":true,"cforigin":true,"cfspeedbrain":true},"location_startswith":null}}"="" crossorigin="anonymous"></script>
 
 
+<style>
+  /* === Scroll reveal global: títulos e textos === */
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity .9s cubic-bezier(.22,.61,.36,1),
+                transform .9s cubic-bezier(.22,.61,.36,1);
+    will-change: opacity, transform;
+  }
+  .reveal-on-scroll.reveal-left  { transform: translateX(-60px); }
+  .reveal-on-scroll.reveal-right { transform: translateX(60px); }
+  .reveal-on-scroll.is-visible {
+    opacity: 1 !important;
+    transform: translate(0,0) !important;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal-on-scroll { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+</style>
 <script>
 (function(){
-  function init(){
+  function initCards(){
     var cards = document.querySelectorAll('.home-page-content-section-areagrid .grid-item-container');
     if(!cards.length) return;
     if(!('IntersectionObserver' in window)){
@@ -7419,7 +7438,6 @@ Si quieres estudiar en Estudiar, ponte en contacto con nosotros. Un asesor perso
       entries.forEach(function(entry){
         if(entry.isIntersecting){
           var el = entry.target;
-          // pequeno delay escalonado por coluna pra ficar fluido
           var idx = Array.prototype.indexOf.call(el.parentNode.children, el);
           var delay = (idx % 3) * 120;
           setTimeout(function(){ el.classList.add('is-visible'); }, delay);
@@ -7429,9 +7447,59 @@ Si quieres estudiar en Estudiar, ponte en contacto con nosotros. Un asesor perso
     }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
     cards.forEach(function(c){ io.observe(c); });
   }
+
+  function initTextReveal(){
+    var selectors = [
+      'h1','h2','h3','h4',
+      '.h1-responsive','.h2-responsive','.h3-responsive',
+      '.quote-text',
+      '.home-section p','section p','article p',
+      '.container p','.container-fluid p'
+    ];
+    var nodes = document.querySelectorAll(selectors.join(','));
+    if(!nodes.length) return;
+
+    var skip = function(el){
+      if(!el || !el.closest) return true;
+      if(el.closest('header, .navbar, app-header, app-side-menu, app-top-menu, footer, .footer-blue, .home-page-content-section-areagrid, .area-title')) return true;
+      if(el.classList && el.classList.contains('reveal-on-scroll')) return true;
+      if(!el.textContent || !el.textContent.trim()) return true;
+      return false;
+    };
+
+    var dirIdx = 0;
+    nodes.forEach(function(el){
+      if(skip(el)) return;
+      el.classList.add('reveal-on-scroll');
+      var d = dirIdx % 3;
+      if(d === 1) el.classList.add('reveal-left');
+      else if(d === 2) el.classList.add('reveal-right');
+      dirIdx++;
+    });
+
+    if(!('IntersectionObserver' in window)){
+      document.querySelectorAll('.reveal-on-scroll').forEach(function(el){ el.classList.add('is-visible'); });
+      return;
+    }
+
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal-on-scroll').forEach(function(el){ io.observe(el); });
+  }
+
+  function init(){ initCards(); initTextReveal(); }
+
   if(document.readyState === 'loading'){
     document.addEventListener('DOMContentLoaded', init);
   } else { init(); }
 })();
 </script>
+
 </body></html>
