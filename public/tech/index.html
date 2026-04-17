@@ -903,6 +903,28 @@ Impulsa tus habilidades en la Traducción e Interpretación con este Doctorado 1
         <span class="carousel-control-prev " data-target="#course-carousel-home" role="button" data-slide="prev" aria-label="Previous"><span aria-hidden="true" class="carousel-control-prev-icon"></span><span class="sr-only">Previous</span></span>
         <span class="carousel-control-next " data-target="#course-carousel-home" role="button" data-slide="next" aria-label="Next"><span aria-hidden="true" class="carousel-control-next-icon"></span><span class="sr-only">Next</span></span>
 </div>
+<script>
+(function(){
+  var carousel = document.getElementById('course-carousel-home');
+  if(!carousel) return;
+  var items = carousel.querySelectorAll('.course-carousel-home-item');
+  if(!items.length) return;
+  var idx = 0, paused = false, interval = 5000;
+  function show(n){
+    items.forEach(function(it,i){ it.classList.toggle('active', i===n); });
+    idx = n;
+  }
+  function next(){ show((idx+1) % items.length); }
+  function prev(){ show((idx-1+items.length) % items.length); }
+  var timer = setInterval(function(){ if(!paused) next(); }, interval);
+  carousel.addEventListener('mouseenter', function(){ paused = true; });
+  carousel.addEventListener('mouseleave', function(){ paused = false; });
+  var prevBtn = carousel.querySelector('.carousel-control-prev');
+  var nextBtn = carousel.querySelector('.carousel-control-next');
+  if(prevBtn) prevBtn.addEventListener('click', function(e){ e.preventDefault(); prev(); });
+  if(nextBtn) nextBtn.addEventListener('click', function(e){ e.preventDefault(); next(); });
+})();
+</script>
 <style type="text/css">
     .course-carousel-home-item > .course-carousel-home-item { position: absolute }
 
