@@ -1512,40 +1512,84 @@ Impulsa tus habilidades en la Traducción e Interpretación con este Doctorado 1
 .cd-custom .cd-title b{font-weight:700;}
 .cd-custom .cd-counter{color:#666;font-size:16px;}
 .cd-custom .cd-counter .cur{color:#FF6400;font-weight:700;font-size:20px;}
-.cd-custom .cd-cards{display:grid;grid-template-columns:1fr;gap:24px;justify-items:center;}
-.cd-custom .cd-card{display:block;max-width:260px;width:100%;}
+.cd-custom .cd-carousel{position:relative;}
+.cd-custom .cd-viewport{overflow:hidden;}
+.cd-custom .cd-track{display:flex;gap:16px;transition:transform .45s ease;will-change:transform;}
+.cd-custom .cd-card{flex:0 0 calc(100% - 0px);max-width:100%;}
 .cd-custom .cd-card img{width:100%;height:auto;display:block;border-radius:14px;}
+.cd-custom .cd-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:#fff;border:1px solid #e5e5e5;box-shadow:0 4px 14px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;color:#666;font-size:22px;}
+.cd-custom .cd-arrow:hover{color:#FF6400;}
+.cd-custom .cd-arrow.prev{left:-10px;}
+.cd-custom .cd-arrow.next{right:-10px;}
+.cd-custom .cd-arrow:disabled{opacity:.35;cursor:not-allowed;}
 @media (min-width:768px){
   .cd-custom{padding:60px 40px;}
   .cd-custom .cd-title{font-size:32px;}
-  .cd-custom .cd-cards{grid-template-columns:repeat(3,1fr);gap:24px;}
+  .cd-custom .cd-card{flex:0 0 calc((100% - 32px) / 3);}
+  .cd-custom .cd-arrow.prev{left:-22px;}
+  .cd-custom .cd-arrow.next{right:-22px;}
 }
 @media (min-width:992px){
   .cd-custom{padding:70px 60px;}
   .cd-custom .cd-title{font-size:38px;}
-  .cd-custom .cd-cards{grid-template-columns:repeat(5,1fr);gap:20px;}
 }
 </style>
 <section class="cd-custom">
   <div class="cd-inner">
     <div class="cd-head">
       <h2 class="cd-title">comparte el mejor <b>claustro docente TOP internacional</b></h2>
-      <div class="cd-counter"><span class="cur">1</span> /6237</div>
+      <div class="cd-counter"><span class="cur" id="cd-cur">1</span> /6237</div>
     </div>
-    <div class="cd-cards">
-      <div class="cd-card"><img src="images/prof-perry.png" alt="Perry, Karen - veterinaria" loading="lazy"></div>
-      <div class="cd-card"><img src="images/prof-bedi.png" alt="Bedi, Raman - odontología" loading="lazy"></div>
-      <div class="cd-card"><img src="images/prof-parikh.png" alt="Parikh, Chiti - medicina, enfermería" loading="lazy"></div>
-      <div class="cd-card"><img src="images/prof-hofmann.png" alt="Hofmann, Stefan G. - psicología" loading="lazy"></div>
-      <div class="cd-card"><img src="images/prof-blinderman.png" alt="Blinderman, Craig David - medicina, enfermería" loading="lazy"></div>
-      <div class="cd-card"><img src="images/prof-tenenbaum.png" alt="Tenenbaum, Howard C. - odontología" loading="lazy"></div>
-      <div class="cd-card"><img src="images/prof-ezenkwele.png" alt="Ezenkwele, Ugo - medicina" loading="lazy"></div>
-      <div class="cd-card"><img src="images/prof-shehebar.png" alt="Shehebar, Josef A. - medicina" loading="lazy"></div>
-      <div class="cd-card"><img src="images/prof-tsao.png" alt="Tsao, Kai - medicina" loading="lazy"></div>
-      <div class="cd-card"><img src="images/prof-deluigi.png" alt="De Luigi, Arthur - medicina" loading="lazy"></div>
+    <div class="cd-carousel">
+      <button class="cd-arrow prev" id="cd-prev" aria-label="Anterior">&#10094;</button>
+      <div class="cd-viewport">
+        <div class="cd-track" id="cd-track">
+          <div class="cd-card"><img src="images/prof-perry.png" alt="Perry, Karen - veterinaria" loading="lazy"></div>
+          <div class="cd-card"><img src="images/prof-bedi.png" alt="Bedi, Raman - odontología" loading="lazy"></div>
+          <div class="cd-card"><img src="images/prof-parikh.png" alt="Parikh, Chiti - medicina, enfermería" loading="lazy"></div>
+          <div class="cd-card"><img src="images/prof-hofmann.png" alt="Hofmann, Stefan G. - psicología" loading="lazy"></div>
+          <div class="cd-card"><img src="images/prof-blinderman.png" alt="Blinderman, Craig David - medicina, enfermería" loading="lazy"></div>
+          <div class="cd-card"><img src="images/prof-tenenbaum.png" alt="Tenenbaum, Howard C. - odontología" loading="lazy"></div>
+          <div class="cd-card"><img src="images/prof-ezenkwele.png" alt="Ezenkwele, Ugo - medicina" loading="lazy"></div>
+          <div class="cd-card"><img src="images/prof-shehebar.png" alt="Shehebar, Josef A. - medicina" loading="lazy"></div>
+          <div class="cd-card"><img src="images/prof-tsao.png" alt="Tsao, Kai - medicina" loading="lazy"></div>
+          <div class="cd-card"><img src="images/prof-deluigi.png" alt="De Luigi, Arthur - medicina" loading="lazy"></div>
+        </div>
+      </div>
+      <button class="cd-arrow next" id="cd-next" aria-label="Siguiente">&#10095;</button>
     </div>
   </div>
 </section>
+<script>
+(function(){
+  var track = document.getElementById('cd-track');
+  var prev = document.getElementById('cd-prev');
+  var next = document.getElementById('cd-next');
+  var cur = document.getElementById('cd-cur');
+  if(!track||!prev||!next) return;
+  var idx = 0;
+  function perView(){ return window.innerWidth >= 768 ? 3 : 1; }
+  function total(){ return track.children.length; }
+  function update(){
+    var pv = perView();
+    var max = Math.max(0, total() - pv);
+    if(idx > max) idx = max;
+    if(idx < 0) idx = 0;
+    var card = track.children[0];
+    var gap = 16;
+    var step = card.getBoundingClientRect().width + gap;
+    track.style.transform = 'translateX(' + (-idx * step) + 'px)';
+    prev.disabled = idx === 0;
+    next.disabled = idx >= max;
+    if(cur) cur.textContent = (idx + 1);
+  }
+  prev.addEventListener('click', function(){ idx--; update(); });
+  next.addEventListener('click', function(){ idx++; update(); });
+  window.addEventListener('resize', update);
+  window.addEventListener('load', update);
+  setTimeout(update, 100);
+})();
+</script>
 
 
 <div data-buttonid="button-touch-6" data-color="#ed0d89" data-textcolor="#ed0d89" class="home-section section-6 hover contain onPassiveListennerTouchSection">
