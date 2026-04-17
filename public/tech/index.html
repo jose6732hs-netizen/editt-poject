@@ -7766,6 +7766,29 @@ footer a:hover { color: #f1bd19 !important; }
 </script>
 
 <script>
+/* Carrega as imagens de fundo do carrossel de cursos a partir de data-img-url */
+(function(){
+  function loadBgs(){
+    document.querySelectorAll('#course-carousel-home .bg-img[data-img-url]').forEach(function(el){
+      if (el.__bgLoaded) return;
+      var url = el.getAttribute('data-img-url');
+      if (url) {
+        el.style.backgroundImage = "url('" + url + "')";
+        el.style.backgroundSize = 'cover';
+        el.style.backgroundPosition = 'center';
+        el.__bgLoaded = true;
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadBgs);
+  } else { loadBgs(); }
+  setTimeout(loadBgs, 400);
+  setTimeout(loadBgs, 1500);
+})();
+</script>
+
+<script>
 /* === Toggle de som no vídeo ao clicar no alto-falante === */
 (function(){
   function bindAudioToggles(){
