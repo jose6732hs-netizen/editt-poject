@@ -137,7 +137,7 @@ const Index = () => {
             Nossos consultores estão prontos para ajudar você a escolher o programa ideal para seus objetivos educacionais e profissionais.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="xl" variant="secondary" className="text-primary font-bold">
+            <Button size="lg" variant="secondary" className="text-primary font-bold">
               Agendar Consultoria Grátis
             </Button>
           </div>
