@@ -227,75 +227,29 @@
         .anim-trigger.fadeInUp { transform: translateY(100px); }
         .anim-trigger.show { opacity: 1; transform: translate(0, 0); }
 
-        /* Header transparente no topo, branco ao rolar */
+        /* Header sempre branco (sem efeito transparente) */
         .app-menu-header,
         .app-menu-header .navbar-header,
         .app-menu-header .fixed-top-menu {
-            background-color: transparent !important;
-            box-shadow: none !important;
-            transition: background-color 0.35s ease, box-shadow 0.35s ease;
-        }
-        .app-menu-header .localized-logo,
-        .app-menu-header .area-logo-default {
-            transition: filter 0.35s ease;
-            filter: brightness(0) invert(1);
-        }
-        .app-menu-header .nav-link,
-        .app-menu-header .navbar-nav .nav-link {
-            color: #ffffff !important;
-            transition: color 0.35s ease;
-        }
-        .app-menu-header .hamburguer span { background-color: #ffffff !important; transition: background-color 0.35s ease; }
-
-        body.menu-scrolled .app-menu-header,
-        body.menu-scrolled .app-menu-header .navbar-header,
-        body.menu-scrolled .app-menu-header .fixed-top-menu {
             background-color: #ffffff !important;
             box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important;
         }
-        body.menu-scrolled .app-menu-header .localized-logo,
-        body.menu-scrolled .app-menu-header .area-logo-default { filter: none; }
-        body.menu-scrolled .app-menu-header .nav-link,
-        body.menu-scrolled .app-menu-header .navbar-nav .nav-link { color: #124a83 !important; }
-        body.menu-scrolled .app-menu-header .hamburguer span { background-color: #124a83 !important; }
+        .app-menu-header .nav-link,
+        .app-menu-header .navbar-nav .nav-link { color: #124a83 !important; }
+        .app-menu-header .hamburguer span { background-color: #124a83 !important; }
 
         /* ====== LOGO ESTUDIAR — substitui todas as logos ====== */
-        .localized-logo,
-        .area-logo-default,
-        .logo-tech,
-        .logo-techtitute,
-        a.logo,
-        .navbar-brand,
-        .footer-logo,
-        .app-menu-header .logo,
-        .app-menu-header img.logo,
-        img.localized-logo,
-        img.area-logo-default {
-            background-image: url('/tech/images/logo-estudiar.png') !important;
-            background-repeat: no-repeat !important;
-            background-position: center center !important;
-            background-size: contain !important;
-            background-color: transparent !important;
-            min-width: 160px;
-            min-height: 48px;
-        }
-        /* Quando a logo é um <img>, troca o src via CSS não funciona — escondemos o img original e colocamos a nova como background no pai */
         .app-menu-header .logo img,
         .navbar-brand img,
         .footer-logo img,
-        a.logo img { content: url('/tech/images/logo-estudiar.png') !important; max-height: 48px; width: auto; }
-
-        /* No header transparente (topo) deixa a logo branca; ao rolar volta ao normal */
-        .app-menu-header .localized-logo,
-        .app-menu-header .area-logo-default,
-        .app-menu-header .navbar-brand img,
-        .app-menu-header a.logo img,
-        .app-menu-header .logo img { filter: brightness(0) invert(1); transition: filter 0.35s ease; }
-        body.menu-scrolled .app-menu-header .localized-logo,
-        body.menu-scrolled .app-menu-header .area-logo-default,
-        body.menu-scrolled .app-menu-header .navbar-brand img,
-        body.menu-scrolled .app-menu-header a.logo img,
-        body.menu-scrolled .app-menu-header .logo img { filter: none; }
+        a.logo img,
+        img.localized-logo,
+        img.area-logo-default {
+            content: url('/tech/images/logo-estudiar.png') !important;
+            max-height: 48px;
+            width: auto;
+            filter: none !important;
+        }
     </style>
 
     
